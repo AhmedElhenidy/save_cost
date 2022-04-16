@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:save_cost/presentation/components/default_button.dart';
 import 'package:save_cost/presentation/components/defualt_form_field.dart';
+import 'package:save_cost/presentation/ui/authentication/register_screen.dart';
+import 'package:save_cost/presentation/ui/choose_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -87,6 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     if(formKey.currentState!.validate()) {
                       print(emailController.text);
                       print(passwordController.text);
+                      Navigator.push(context, MaterialPageRoute(builder: (builder)=>ChooseScreen()));
                     }
                   },
                 ),
@@ -103,7 +106,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    TextButton(onPressed: (){},
+                    TextButton(
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (builder)=>RegisterScreen()));
+                      },
                       child: Text(
 
                         'Register Now',
