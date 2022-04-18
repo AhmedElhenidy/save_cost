@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:save_cost/domain/firebase_services/firebase_authentication.dart';
 import 'package:save_cost/presentation/components/default_button.dart';
 import 'package:save_cost/presentation/components/defualt_form_field.dart';
 import 'package:save_cost/presentation/ui/authentication/register_screen.dart';
@@ -13,11 +16,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   var emailController = TextEditingController();
-
   var passwordController = TextEditingController();
-
   var formKey = GlobalKey<FormState>();
-
   bool isPassword = true;
 
   @override
@@ -89,7 +89,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     if(formKey.currentState!.validate()) {
                       print(emailController.text);
                       print(passwordController.text);
-                      Navigator.push(context, MaterialPageRoute(builder: (builder)=>ChooseScreen()));
+                      FirebaseAuthentication.signIn(emailController.text,passwordController.text).then((value){
+                        if(value){
+                          Navigator.push(context, MaterialPageRoute(builder: (builder)=>ChooseScreen()));
+                        }
+                        else{
+                          log("error in sign in");
+                        }
+                      });
+
                     }
                   },
                 ),
