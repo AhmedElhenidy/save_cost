@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:save_cost/presentation/ui/authentication/login_screen.dart';
+import 'package:save_cost/presentation/ui/shopping_screen.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
           elevation: 20.0,
         ),
       ),
-      home: const LoginScreen(),
+      home: const ShoppingScreen(),
     );
   }
 }

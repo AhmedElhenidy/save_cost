@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     if(formKey.currentState!.validate()) {
                       print(emailController.text);
                       print(passwordController.text);
-                      FirebaseAuthentication.register(emailController.text,passwordController.text).then((value){
+                      FirebaseAuthentication.signIn(emailController.text,passwordController.text).then((value){
                         log("value : : $value");
                         if(value){
                           Navigator.push(context, MaterialPageRoute(builder: (builder)=>ChooseScreen()));

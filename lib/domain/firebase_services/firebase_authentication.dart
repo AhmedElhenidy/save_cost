@@ -11,7 +11,7 @@ class FirebaseAuthentication{
         password: password,
       );
       log(credential.user!.email!);
-      return Future.value(true);
+      return Future.value(credential.user!=null ?true:false);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -31,7 +31,7 @@ class FirebaseAuthentication{
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress,
         password: password,
-      ).then((value) => log("${value.user?.uid}"));
+      ).then((value) => log("${value.user?.uid}"),onError: (err)=>log(err.toString()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
