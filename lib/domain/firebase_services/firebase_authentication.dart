@@ -28,10 +28,10 @@ class FirebaseAuthentication{
 
   static register(String emailAddress ,String password)async{
     try {
-      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress,
         password: password,
-      );
+      ).then((value) => log("${value.user?.uid}"));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');

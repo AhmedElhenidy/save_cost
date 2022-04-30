@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:save_cost/presentation/components/defualt_form_field.dart';
-import 'package:save_cost/presentation/ui/trip_result_screen.dart';
+
+import 'trip_result_screen.dart';
+
 
 class SharingCost extends StatefulWidget {
   const SharingCost({Key? key}) : super(key: key);
@@ -93,29 +95,59 @@ var dateController = TextEditingController();
           ),
           Container(
             color: Colors.teal,
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: MaterialButton(
+
+                onPressed: (){
+                  Navigator.push(
+                    context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return TripResult();
+                          }),
+
+                  );
+                },
+                // minWidth: double.infinity,
+                child: const Text('Post',
+                style: TextStyle(
+                    color: Colors.white,
+                  fontSize: 22,
+                ),
+                ),
+
+
+              ),
+            ),
+          ),
+          SizedBox(height: 20,),
+          Container(
+            color: Colors.teal,
             child: MaterialButton(
 
               onPressed: (){
                 Navigator.push(
                   context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) {
-                          return TripResult();
-                        }),
+                  MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return TripResult();
+                      }),
 
                 );
               },
-              minWidth: 100,
-              child: const Text('Post',
-              style: TextStyle(
+              minWidth: double.infinity,
+              child: const Text('show available trips',
+                style: TextStyle(
                   color: Colors.white,
-                fontSize: 22,
-              ),
+                  fontSize: 22,
+                ),
               ),
 
 
             ),
           ),
+
 
 
         ],
