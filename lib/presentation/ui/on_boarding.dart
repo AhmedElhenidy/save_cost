@@ -106,7 +106,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 onPressed: ()
                 {
                   if(islast){
-                    Navigator.push(context, MaterialPageRoute(builder: (builder)=>LoginScreen(),));
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder:(context)=>LoginScreen() ,
+                      ),
+                          (route)
+                      {
+                        return false;
+                      },
+                    );
                   }
                   boardController.nextPage(
                       duration: Duration(milliseconds: 750,),

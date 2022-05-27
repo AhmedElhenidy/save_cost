@@ -28,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor:Colors.teal,
         title: Text (
           'Welcome to your app',
+          style: TextStyle(color: Colors.white,),
         ),
       ) ,
       body: Padding(
@@ -43,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   'Login',
                   style:TextStyle(
                     fontSize: 40,
-                    color: Colors.brown,
+                    color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -111,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       'Don\'t have an account ?  ',
                       style:TextStyle(
                         fontSize: 17,
-                        color: Colors.brown,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -124,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         'Register Now',
                         style: TextStyle(
                           fontSize: 17,
-                          color: Colors.teal,
+                          color: Colors.blue,
                         ),
                       ),)
 

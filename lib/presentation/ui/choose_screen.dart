@@ -2,6 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:save_cost/presentation/ui/authentication/Sign_up_for_trips_screen.dart';
+import 'package:save_cost/presentation/ui/sharing_cost_screen.dart';
+import 'package:save_cost/presentation/ui/shopping_screen.dart';
 
 class ChooseScreen extends StatelessWidget {
   const ChooseScreen({Key? key}) : super(key: key);
@@ -12,7 +14,10 @@ class ChooseScreen extends StatelessWidget {
      appBar: AppBar(
        leading:
        Icon(Icons.arrow_back_outlined),
-       title: Text('enjoy with your app'),
+       title: Text(
+         'enjoy with your app',
+         style: TextStyle(color: Colors.white,),
+       ),
        backgroundColor:Colors.teal,
      ),
      body:ListView(
@@ -48,6 +53,7 @@ class ChooseScreen extends StatelessWidget {
 
                  child: InkWell(
                    onTap: (){
+                     Navigator.push(context, MaterialPageRoute(builder: (builder)=>ShoppingScreen()));
 
                    },
                    child: Stack(
@@ -104,7 +110,7 @@ class ChooseScreen extends StatelessWidget {
                  width: 200,
                  child: InkWell(
                    onTap: (){
-                     Navigator.push(context, MaterialPageRoute(builder: (builder)=>SignUpForTripsScreen()));
+                     Navigator.push(context, MaterialPageRoute(builder: (builder)=>SharingCost()));
                    },
                    child: Stack(
                      alignment: Alignment.bottomCenter,

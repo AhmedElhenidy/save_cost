@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:save_cost/presentation/ui/authentication/login_screen.dart';
 import 'package:save_cost/presentation/ui/shopping_screen.dart';
 
+import 'presentation/ui/on_boarding.dart';
+
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
           elevation: 20.0,
         ),
       ),
-      home: const ShoppingScreen(),
+      home: OnBoardingScreen(),
     );
   }
 }
