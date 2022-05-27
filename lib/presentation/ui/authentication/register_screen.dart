@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:save_cost/domain/firebase_services/firebase_authentication.dart';
 import 'package:save_cost/presentation/components/defualt_form_field.dart';
 import 'package:save_cost/presentation/ui/choose_screen.dart';
 
@@ -15,6 +18,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var passwordController = TextEditingController();
   var confirmPasswordController = TextEditingController();
   var usernameController = TextEditingController();
+  var phoneNumberController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
 
@@ -180,6 +184,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 20.0,
                   ),
                   TextFormField(
+                    controller: phoneNumberController,
                     validator: (value) {
                       if ( value!.isEmpty) {
                         return 'this field must not be empty';
@@ -211,21 +216,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
 
                   Row(
-                    mainAxisAlignment:MainAxisAlignment.end ,
+                    mainAxisAlignment:MainAxisAlignment.center ,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Container(
                         color: Colors.teal,
-                        width: 90,
+                        //width: 90,
                         height: 45,
 
                         child: MaterialButton(
-                          onPressed: ()
+                          onPressed: () async
                           {
                           if (formKey.currentState!.validate()) {
+                            // firebase register
+                           bool success = await FirebaseAuthentication.register(
+                                usernameController.text,
+                                emailController.text,
+                                passwordController.text,
+                                phoneNumberController.text,
+                            );
+                           if(success){
+                             Navigator.push(context, MaterialPageRoute(builder: (builder)=>ChooseScreen()));
+                           }else{
+                             log("error from register");
+                           }
                           setState(() {
                           isClicked = true;
-                          Navigator.push(context, MaterialPageRoute(builder: (builder)=>ChooseScreen()));
+
                           });
                           }
                           },
