@@ -27,8 +27,12 @@ class Product {
     quantity = json['quantity'];
     sellTimes = int.parse(json['sell_times']);
     seller = json['seller'];
+    categoryID = json['categoryID'];
+    discount = json['discount'];
   }
   String? name;
+  String? categoryID;
+  String? discount;
   int? price;
   String? address;
   String? description;

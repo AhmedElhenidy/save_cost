@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:save_cost/presentation/ui/authentication/login_screen.dart';
+import 'package:save_cost/presentation/ui/choose_screen.dart';
 import 'package:save_cost/presentation/ui/shopping_screen.dart';
 
 import 'presentation/ui/on_boarding.dart';
@@ -45,7 +47,7 @@ class MyApp extends StatelessWidget {
           elevation: 20.0,
         ),
       ),
-      home: OnBoardingScreen(),
+      home: FirebaseAuth.instance.currentUser==null?OnBoardingScreen():ChooseScreen(),
     );
   }
 }

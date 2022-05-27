@@ -229,17 +229,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           {
                           if (formKey.currentState!.validate()) {
                             // firebase register
-                           bool success = await FirebaseAuthentication.register(
+                          await FirebaseAuthentication.register(
                                 usernameController.text,
                                 emailController.text,
                                 passwordController.text,
                                 phoneNumberController.text,
+                               (){
+                                 Navigator.push(context, MaterialPageRoute(builder: (builder)=>ChooseScreen()));
+                               },
+                               (message){
+                                 log(message);
+                                 _showMyDialog(message);
+                               },
                             );
-                           if(success){
-                             Navigator.push(context, MaterialPageRoute(builder: (builder)=>ChooseScreen()));
-                           }else{
-                             log("error from register");
-                           }
+
                           setState(() {
                           isClicked = true;
 
@@ -267,6 +270,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
 
+    );
+  }
+  Future<void> _showMyDialog(String errMessage) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Error!'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children:  <Widget>[
+                Text(errMessage),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

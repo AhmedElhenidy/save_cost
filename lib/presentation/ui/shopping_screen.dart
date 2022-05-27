@@ -29,7 +29,6 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body:
       _WidgetOption.elementAt(currentIndex)
       // FutureBuilder<QuerySnapshot>(

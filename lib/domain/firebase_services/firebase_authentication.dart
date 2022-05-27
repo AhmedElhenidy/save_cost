@@ -27,7 +27,12 @@ class FirebaseAuthentication{
     }
   }
 
-  static Future register(String userName ,String emailAddress,String password,String phoneNumber )async{
+  static Future register(String userName ,
+      String emailAddress,
+      String password,String phoneNumber,
+      Function onSuccess,
+      Function(String errMessage) onError,
+      )async{
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress,
@@ -43,25 +48,24 @@ class FirebaseAuthentication{
             "id":value.user?.uid,
           }
         );
-        return true;
+        onSuccess();
       }
           ,onError: (err){
             log(err.toString());
-            return false;
+            onError(err.toString());
           }
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
+        onError('The password provided is too weak.');
         print('The password provided is too weak.');
-        return false;
       } else if (e.code == 'email-already-in-use') {
-
+        onError('The account already exists for that email.');
         print('The account already exists for that email.');
-        return false;
       }
     } catch (e) {
       print(e);
-      return false;
+      onError(e.toString());
     }
   }
 }

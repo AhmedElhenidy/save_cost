@@ -1,11 +1,16 @@
 
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:save_cost/domain/model/category_model.dart';
 import 'package:save_cost/presentation/components/my_driver.dart';
+import 'package:save_cost/shop_app/products/all_products_screen.dart';
 import 'package:save_cost/shop_app/search/search_screen.dart';
 
 
 class CategoriesScreen extends StatelessWidget {
-
+  List<CategoryModel> categories= [] ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,12 +27,78 @@ class CategoriesScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView.separated(
-          itemBuilder: (context,index)=> buildCatItem(),
-          separatorBuilder:(context,index)=> myDivider() ,
-          itemCount: 10,
+      body:FutureBuilder<QuerySnapshot>(
+        future: FirebaseFirestore.instance.collection("categories").get(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          switch(snapshot.connectionState)
+          {
+            case ConnectionState.none:
+              return SizedBox();
+            case ConnectionState.waiting:
+              return Center(
+                child: Text("Loading...."),
+              );
+            case ConnectionState.active:
+              return SizedBox();
+            case ConnectionState.done:
+              log("${snapshot.data?.docs.length.toString()}");
+              categories.clear();
+              snapshot.data?.docs.forEach((element) {
+                log(element["name"]);
+                categories.add(CategoryModel.fromJson(element));
+              });
+              return  ListView.separated(
+                padding: EdgeInsets.all(16),
+                physics: BouncingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                itemBuilder: (context,index) {
+                  return  InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (ctx)=>AllProductsScreen(categories[index].id??"1")));
+                    },
+                    child: Row(
+                      children:
+                      [
+                        Image(
+                          image:NetworkImage(categories[index].imageURl??""),
+                          height: 120,
+                          width:120 ,
+                          fit: BoxFit.fitWidth,
+                        ),
+                        SizedBox(
+                          width: 20.0,
+                        ),
+                        Text(
+                          '${categories[index].name}',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Spacer(),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                separatorBuilder: (context,index)=> SizedBox(
+                  width: 10.0,
+                ),
+                itemCount: categories.length,
+              );
 
+
+          }
+        },
       ),
+      // body: ListView.separated(
+      //     itemBuilder: (context,index)=> buildCatItem(),
+      //     separatorBuilder:(context,index)=> myDivider() ,
+      //     itemCount: 10,
+      //
+      // ),
     );
   }
   Widget buildCatItem()=>Padding(
