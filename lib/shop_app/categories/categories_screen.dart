@@ -83,7 +83,8 @@ class CategoriesScreen extends StatelessWidget {
                     ),
                   );
                 },
-                separatorBuilder: (context,index)=> SizedBox(
+                separatorBuilder: (context,index)=>
+                    SizedBox(
                   width: 10.0,
                 ),
                 itemCount: categories.length,
@@ -101,32 +102,32 @@ class CategoriesScreen extends StatelessWidget {
       // ),
     );
   }
-  Widget buildCatItem()=>Padding(
-    padding: const EdgeInsets.all(20.0),
-    child: Row(
-      children:
-      [
-        Image(
-          image: AssetImage('assets/images/laptop.jpg'),
-          height: 120,
-          width:120 ,
-          fit: BoxFit.fitWidth,
-        ),
-        SizedBox(
-          width: 20.0,
-        ),
-        Text(
-          'Title',
-          style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Spacer(),
-        Icon(
-          Icons.arrow_forward_ios,
-        ),
-      ],
-    ),
-  );
+  // Widget buildCatItem()=>Padding(
+  //   padding: const EdgeInsets.all(20.0),
+  //   child: Row(
+  //     children:
+  //     [
+  //       Image(
+  //         image: AssetImage('assets/images/laptop.jpg'),
+  //         height: 120,
+  //         width:120 ,
+  //         fit: BoxFit.fitWidth,
+  //       ),
+  //       SizedBox(
+  //         width: 20.0,
+  //       ),
+  //       Text(
+  //         'Title',
+  //         style: TextStyle(
+  //           fontSize: 20.0,
+  //           fontWeight: FontWeight.bold,
+  //         ),
+  //       ),
+  //       Spacer(),
+  //       Icon(
+  //         Icons.arrow_forward_ios,
+  //       ),
+  //     ],
+  //   ),
+  // );
 }

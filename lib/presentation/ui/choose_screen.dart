@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:save_cost/presentation/ui/authentication/Sign_up_for_trips_screen.dart';
 import 'package:save_cost/presentation/ui/sharing_cost_screen.dart';
 import 'package:save_cost/presentation/ui/shopping_screen.dart';
+import 'package:save_cost/shop_app/settings/settings_screen.dart';
 
 class ChooseScreen extends StatelessWidget {
   const ChooseScreen({Key? key}) : super(key: key);
@@ -12,12 +13,23 @@ class ChooseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
    return Scaffold(
      appBar: AppBar(
-       leading:
-       Icon(Icons.arrow_back_outlined),
+       //leading:
+      //Icon(Icons.arrow_back_outlined),
        title: Text(
          'enjoy with your app',
          style: TextStyle(color: Colors.white,),
        ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.settings),
+              onPressed: ()
+              {
+                Navigator.push(context, MaterialPageRoute(builder: (builder)=>SettingScreen()));
+              },
+
+            ),
+
+          ],
        backgroundColor:Colors.teal,
      ),
      body:ListView(

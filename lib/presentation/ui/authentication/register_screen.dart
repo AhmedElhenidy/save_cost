@@ -108,10 +108,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                     controller: passwordController,
                     decoration: InputDecoration(
-                      isDense: false,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                      ),
+                      // isDense: false,
+                      // contentPadding: const EdgeInsets.symmetric(
+                      //   horizontal: 20.0,
+                      // ),
                       border: OutlineInputBorder(),
                       label: const Text(
                         'Password',
@@ -151,10 +151,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 },
                 controller: confirmPasswordController,
                 decoration: InputDecoration(
-                  isDense: false,
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 20.0,
-                  ),
+                  // isDense: false,
+                  // contentPadding: const EdgeInsets.symmetric(
+                  //   horizontal: 20.0,
+                  // ),
                   border: OutlineInputBorder(),
                   label: const Text(
                     'Confirm Password',
@@ -235,7 +235,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 passwordController.text,
                                 phoneNumberController.text,
                                (){
-                                 Navigator.push(context, MaterialPageRoute(builder: (builder)=>ChooseScreen()));
+                                 Navigator.pushAndRemoveUntil(
+                                   context,
+                                   MaterialPageRoute(
+                                     builder:(context)=> ChooseScreen(),
+                                   ),
+                                       (route)
+                                   {
+                                     return false;
+                                   },
+                                 );
                                },
                                (message){
                                  log(message);
