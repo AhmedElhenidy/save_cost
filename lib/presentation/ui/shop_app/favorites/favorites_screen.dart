@@ -1,10 +1,44 @@
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:save_cost/domain/model/product_model.dart';
+import 'package:save_cost/domain/sqflite_services/favourites_service.dart';
 import 'package:save_cost/presentation/components/my_driver.dart';
-import 'package:save_cost/shop_app/search/search_screen.dart';
+import 'package:save_cost/presentation/ui/shop_app/search/search_screen.dart';
 
-class FavoritesScreen extends StatelessWidget {
+class FavoritesScreen extends StatefulWidget {
 
+  @override
+  State<FavoritesScreen> createState() => _FavoritesScreenState();
+}
+
+class _FavoritesScreenState extends State<FavoritesScreen> {
+  List<Product> products= [] ;
+  bool loading = false;
+  bool error = false;
+  getDataFromOfflineDB()async{
+    setState(() {
+      loading = true;
+    });
+    await FavouriteServices().getFavouriteProducts().then((value){
+      products.clear();
+      products.addAll(value);
+      setState(() {
+        loading = false;
+      });
+    },onError: (err){
+      setState(() {
+        error = true;
+        loading = false;
+      });
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+    getDataFromOfflineDB();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,17 +56,27 @@ class FavoritesScreen extends StatelessWidget {
         ],
       ),
 
-      body:ListView.separated(
-        itemBuilder: (context,index)=> BuildFavItem(),
+      body:error
+          ?
+      const Center(child: Text("Error!"),)
+          :
+      loading
+          ?
+      const Center(child: CircularProgressIndicator(),)
+          :
+      ListView.separated(
+        itemBuilder: (context,index)=> BuildFavItem(product: products[index]),
         separatorBuilder:(context,index)=> myDivider() ,
-        itemCount: 10,
+        itemCount: products.length,
 
       ),
     );
   }
 
-  Widget BuildFavItem ({
+  Widget BuildFavItem({
+    required Product product,
     bool isOldPrice = true,
+
   })  => Padding(
     padding: const EdgeInsets.all(20.0),
     child: Container(
@@ -43,8 +87,8 @@ class FavoritesScreen extends StatelessWidget {
           Stack(
             alignment: AlignmentDirectional.bottomStart,
             children: [
-              Image(
-                image: AssetImage('assets/images/product2.jpg'),
+              Image.network(
+                product.image??"",
                 width: 120,
                 height: 120,
                 // fit: BoxFit.cover,
@@ -73,7 +117,7 @@ class FavoritesScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Stitch Detail Double Handle Square Bag',
+                 product.name??"",
                   style: TextStyle(
                     fontSize: 14,
                     height: 1.3,
@@ -81,12 +125,21 @@ class FavoritesScreen extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
+                Text(
+                  product.description??"",
+                  style: TextStyle(
+                    fontSize: 14,
+                    height: 1.3,
+                  ),
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                ),
                 Spacer(),
                 Row(
                   children: [
                     // NEW PRICE
                     Text(
-                      'EGP 250',
+                      'EGP ${product.price}',
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.purple,
@@ -110,17 +163,26 @@ class FavoritesScreen extends StatelessWidget {
                       ),
                     Spacer(),
                     IconButton(
-                      onPressed: ()
-                      {
+                      onPressed: () async{
+                        var result = await FavouriteServices().deleteProductFromFavourites(product.name!);
+                        if(result != 0){
+                          log(result.toString(),name: "FromIcon Button delete");
+                          setState((){
+                            products.remove(product);
+                          });
+                        }
+                        else{
+                          log(result.toString(),name: "FromIcon Button else");
+                        }
                         print('ok');
                       },
                       icon: CircleAvatar(
                         radius: 15.0,
                         backgroundColor:true? Colors.purple:Colors.grey,
                         child: Icon(
-                          Icons.favorite_border,
+                          Icons.favorite,
                           size: 20.0,
-                          color: Colors.white,
+                          color: Colors.orange,
                         ),
                       ),
 

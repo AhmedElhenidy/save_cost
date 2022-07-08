@@ -12,7 +12,8 @@ class Product {
     this.searchTimes,
     this.quantity,
     this.sellTimes,
-    this.seller,});
+    this.seller,
+    this.isFavourite=false});
 
   Product.fromJson(dynamic json) {
     name = json['name'];
@@ -30,6 +31,7 @@ class Product {
     categoryID = json['categoryID'];
     discount = json['discount'];
   }
+
   String? name;
   String? categoryID;
   String? discount;
@@ -44,6 +46,7 @@ class Product {
   String? quantity;
   int? sellTimes;
   String? seller;
+  bool isFavourite = false;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -59,7 +62,43 @@ class Product {
     map['quantity'] = quantity;
     map['sell_times'] = sellTimes;
     map['seller'] = seller;
+    map['categoryID'] = categoryID;
     return map;
+  }
+
+  Map<String, dynamic> toDb() {
+    final map = <String, dynamic>{};
+    map['productId'] = categoryID;
+    map['productName'] = name;
+    map['productPrice'] = price.toString();
+    map['productAddress'] = address;
+    map['productDescription'] = description;
+    map['productSize'] = size;
+    map['productColor'] = color;
+    map['productImage'] = image;
+    map['productRate'] = rate;
+    map['productSearchTimes'] = searchTimes;
+    map['productQuantity'] = quantity;
+    map['productSellTimes'] = sellTimes.toString();
+    map['productSeller'] = seller;
+    map['productDiscount'] = discount;
+    return map;
+  }
+  Product.fromDb(dynamic json) {
+    categoryID = json['productId'];
+    name = json['productName'];
+    price = int.tryParse(json['productPrice'])??0;
+    address = json['productAddress'];
+    description = json['productDescription'];
+    size = json['productSize'];
+    color = json['productColor'];
+    image = json['productImage'];
+    rate = json['productRate'];
+    searchTimes = json['productSearchTimes'];
+    quantity = json['productQuantity'];
+    sellTimes = int.tryParse(json['productSellTimes'])??0;
+    seller = json['productSeller'];
+    discount = json['productDiscount'];
   }
 
 }

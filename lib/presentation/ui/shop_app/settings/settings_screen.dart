@@ -5,10 +5,8 @@ import 'package:save_cost/presentation/components/default_button.dart';
 import 'package:save_cost/presentation/components/themes.dart';
 import 'package:save_cost/presentation/ui/authentication/login_screen.dart';
 import 'package:save_cost/sharing_cost_screens/profile.dart';
-import 'package:save_cost/shop_app/search/search_screen.dart';
 import 'package:switcher/core/switcher_size.dart';
 import 'package:switcher/switcher.dart';
-import 'package:switcher_button/switcher_button.dart';
 import 'package:provider/provider.dart';
 
 

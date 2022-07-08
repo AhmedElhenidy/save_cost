@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:save_cost/presentation/ui/authentication/Sign_up_for_trips_screen.dart';
 import 'package:save_cost/presentation/ui/sharing_cost_screen.dart';
+import 'package:save_cost/presentation/ui/shop_app/settings/settings_screen.dart';
 import 'package:save_cost/presentation/ui/shopping_screen.dart';
-import 'package:save_cost/shop_app/settings/settings_screen.dart';
 
 class ChooseScreen extends StatelessWidget {
   const ChooseScreen({Key? key}) : super(key: key);
@@ -75,7 +75,6 @@ class ChooseScreen extends StatelessWidget {
 
                        Image (
                          image: NetworkImage(
-
                          'https://previews.123rf.com/images/tigatelu/tigatelu1312/tigatelu131200182/24469377-%EC%98%A8%EB%9D%BC%EC%9D%B8-%EC%87%BC%ED%95%91-%EB%A7%8C%ED%99%94.jpg',
                          ),
                          height:200,

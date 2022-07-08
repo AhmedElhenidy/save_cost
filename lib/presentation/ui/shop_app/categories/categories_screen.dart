@@ -4,9 +4,9 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:save_cost/domain/model/category_model.dart';
-import 'package:save_cost/presentation/components/my_driver.dart';
-import 'package:save_cost/shop_app/products/all_products_screen.dart';
-import 'package:save_cost/shop_app/search/search_screen.dart';
+import 'package:save_cost/presentation/ui/shop_app/products/all_products_screen.dart';
+import 'package:save_cost/presentation/ui/shop_app/search/search_screen.dart';
+
 
 
 class CategoriesScreen extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:save_cost/domain/model/product_model.dart';
-import 'package:save_cost/shop_app/search/search_screen.dart';
+import 'package:save_cost/presentation/ui/shop_app/search/search_screen.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
  final Product myProduct;
