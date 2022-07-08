@@ -22,9 +22,9 @@ Widget defaultFormField ({
   enabled: isClickable,
 
   decoration: InputDecoration(
-    // prefixIcon: Icon(
-    //   prefix,
-    // ),
+    prefixIcon: Icon(
+      prefix,
+    ),
     // suffixIcon: suffix !=null ? IconButton(
     //   onPressed: SuffixPressed,
     //   icon: Icon(

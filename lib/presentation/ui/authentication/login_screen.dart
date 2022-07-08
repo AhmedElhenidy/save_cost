@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:save_cost/domain/firebase_services/firebase_authentication.dart';
 import 'package:save_cost/presentation/components/default_button.dart';
 import 'package:save_cost/presentation/components/defualt_form_field.dart';
@@ -61,27 +62,67 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20,),
-                defaultFormField(
-                  controller: passwordController,
-                  label: 'Password',
-                  prefix: Icons.lock,
-                  suffix: isPassword ? Icons.visibility : Icons.visibility_off,
-                  isPassword: isPassword,
-                  // SuffixPressed: (){
-                  //   setState(() {
-                  //     isPassword=!isPassword;
-                  //   });
-                  // },
-                  type: TextInputType.visiblePassword,
-
-                  validate: (value){
-                    if (value!.isEmpty){
+                SizedBox(height: 30,),
+                TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
                       return'password is to short';
                     }
+
                     return null;
                   },
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    //
+                    // isDense: false,
+                    // contentPadding: const EdgeInsets.symmetric(
+                    //   horizontal: 20.0,
+                    //
+                    //
+                    // ),
+                    border: OutlineInputBorder(),
+                    label: const Text(
+                      'Password',
+                    ),
+                    prefixIcon: (
+                        const Icon(
+                          Icons.lock,
+                        )
+                    ),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isPassword = !isPassword;
+                        });
+                      },
+                      icon: Icon(
+                        isPassword ? Icons.visibility : Icons.visibility_off,
+                      ),
+                    ),
+                  ),
+                  obscureText: isPassword,
+                  keyboardType: TextInputType.visiblePassword,
                 ),
+                // defaultFormField(
+                //   controller: passwordController,
+                //   label: 'Password',
+                //   prefix: Icons.lock,
+                //   suffix: isPassword ? Icons.visibility : Icons.visibility_off,
+                //   isPassword: isPassword,
+                //   // SuffixPressed: (){
+                //   //   setState(() {
+                //   //     isPassword=!isPassword;
+                //   //   });
+                //   // },
+                //   type: TextInputType.visiblePassword,
+                //
+                //   validate: (value){
+                //     if (value!.isEmpty){
+                //       return'password is to short';
+                //     }
+                //     return null;
+                //   },
+                // ),
                 SizedBox(height: 20,),
                 defaultButton(
                   text: 'Login',
@@ -93,7 +134,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       FirebaseAuthentication.signIn(emailController.text,passwordController.text).then((value){
                         log("value : : $value");
                         if(value){
-                          Navigator.push(context, MaterialPageRoute(builder: (builder)=>ChooseScreen()));
+
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder:(context)=> ChooseScreen(),
+                            ),
+                                (route)
+                            {
+                              return false;
+                            },
+                          );
                         }
                         else{
                           log("error in sign in");

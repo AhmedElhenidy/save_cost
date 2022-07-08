@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -161,7 +163,7 @@ class _AddTripState extends State<AddTrip> {
                 padding: const EdgeInsets.all(5.0),
                 child: MaterialButton(
 
-                  onPressed: (){
+                  onPressed: () async {
 
                     Navigator.pushReplacement(
                       context,
@@ -171,6 +173,17 @@ class _AddTripState extends State<AddTrip> {
                           }),
 
                     );
+                    //add post to firebase
+
+                    var current_user =
+                        await FirebaseAuth.instance.currentUser!;
+                    FirebaseFirestore.instance.collection('posts').doc().set({
+                      'place': titleController.text,
+                      'date': dateController.text,
+                      'time': timeController.text,
+                      'car model': CarController.text,
+                      'user': 'users/' + current_user.uid,
+                    });
                   },
                   // minWidth: double.infinity,
                   child: const Text('Post',
@@ -203,6 +216,10 @@ class _AddTripState extends State<AddTrip> {
       setState(() {
         imageFile = File(file!.path);
       });
+      final path = file!.path;
+      final fileName = file.name;
+      print(path);
+      print(fileName);
 
     }
   }
