@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:save_cost/presentation/components/defualt_form_field.dart';
+import 'package:save_cost/presentation/ui/sharing_cost_screen.dart';
 import 'package:save_cost/sharing_cost_screens/home.dart';
 
 class AddTrip extends StatefulWidget {  @override
@@ -162,11 +163,11 @@ class _AddTripState extends State<AddTrip> {
 
                   onPressed: (){
 
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return TripsHome();
+                            return SharingCost();
                           }),
 
                     );
