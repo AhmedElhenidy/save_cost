@@ -17,7 +17,8 @@ class ChooseScreen extends StatelessWidget {
       //Icon(Icons.arrow_back_outlined),
        title: Text(
          'enjoy with your app',
-         style: TextStyle(color: Colors.white,),
+         style:TextStyle(color: Colors.white) ,
+         //Theme.of(context).textTheme.bodyText1,
        ),
           actions: [
             IconButton(
@@ -30,7 +31,7 @@ class ChooseScreen extends StatelessWidget {
             ),
 
           ],
-       backgroundColor:Colors.teal,
+      backgroundColor:Colors.green[500],
      ),
      body:ListView(
        children: [
@@ -38,15 +39,7 @@ class ChooseScreen extends StatelessWidget {
            padding: EdgeInsetsDirectional.only(top: 55,start: 10,),
            child: Text(
              'Choose one...',
-             style: TextStyle(
-               backgroundColor: Colors.teal,
-
-               fontStyle:FontStyle.italic,
-
-               color: Colors.white,
-               fontSize: 30,
-
-             ),
+             style:Theme.of(context).textTheme.subtitle2,
            ),
          ),
          SizedBox(height: 10,),

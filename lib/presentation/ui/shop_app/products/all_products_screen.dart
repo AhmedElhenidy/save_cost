@@ -97,7 +97,7 @@ class _AllProductsScreenState extends State<AllProductsScreen> {
                           Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ProductDetailsScreen(products[index])));
                         },
                         child: Container(
-                          color:Colors.white,
+                          color:Theme.of(context).scaffoldBackgroundColor,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -134,10 +134,7 @@ class _AllProductsScreenState extends State<AllProductsScreen> {
                                       products[index].name??""+"\n"+
                                           products[index].description!+"\n"+
                                           products[index].size!+"\n",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        height: 1.3,
-                                      ),
+                                      style:Theme.of(context).textTheme.subtitle1,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                     ),

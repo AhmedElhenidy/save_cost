@@ -21,7 +21,7 @@ class SettingScreen extends StatelessWidget
   List<Product> products= [] ;
   @override
   Widget build(BuildContext context) {
-    return Consumer(builder: (context,ThemeModel themeNotifier,child){
+
       return Scaffold(
         appBar: AppBar(
           title: Text('Settings'),
@@ -150,10 +150,7 @@ class SettingScreen extends StatelessWidget
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Discount',
-                        style: TextStyle(
-                          fontSize: 20,
-
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                       Switcher(
 
@@ -186,13 +183,11 @@ class SettingScreen extends StatelessWidget
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Dark Mode',
-                        style: TextStyle(
-                          fontSize: 20,
-
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                       Switcher(
-                        value:themeNotifier.isDarkMode? false :true,
+                        value:false,
+                        //themeNotifier.isDarkMode? false :true,
                         size: SwitcherSize.medium,
                         switcherButtonRadius: 50,
                         enabledSwitcherButtonRotate: true,
@@ -203,9 +198,9 @@ class SettingScreen extends StatelessWidget
 
                         onChanged: (bool state)
                         {
-                          themeNotifier.isDarkMode
-                              ? themeNotifier.isDarkMode=false
-                              :themeNotifier.isDarkMode=true;
+                          // themeNotifier.isDarkMode
+                          //     ? themeNotifier.isDarkMode=false
+                          //     :themeNotifier.isDarkMode=true;
                         },
                       ),
                     ],
@@ -218,10 +213,7 @@ class SettingScreen extends StatelessWidget
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Language(Arabic)',
-                        style: TextStyle(
-                          fontSize: 20,
-
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                       Switcher(
 
@@ -248,10 +240,7 @@ class SettingScreen extends StatelessWidget
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Access Location',
-                        style: TextStyle(
-                          fontSize: 20,
-
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                       Switcher(
 
@@ -277,10 +266,7 @@ class SettingScreen extends StatelessWidget
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Notification',
-                        style: TextStyle(
-                          fontSize: 20,
-
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                       Switcher(
 
@@ -334,7 +320,7 @@ class SettingScreen extends StatelessWidget
           ),
         ),
       );
-    });
+
 
 
   }

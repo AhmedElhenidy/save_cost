@@ -48,6 +48,7 @@ dependencies:
   flutter_switch: ^0.3.2
   switcher: ^1.0.0
   intl: ^0.17.0
+  smooth_page_indicator: ^1.0.0+2
 
 
 

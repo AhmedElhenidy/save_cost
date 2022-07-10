@@ -70,14 +70,14 @@ class CategoriesScreen extends StatelessWidget {
                         ),
                         Text(
                           '${categories[index].name}',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context).textTheme.bodyText1,
                         ),
                         Spacer(),
                         Icon(
                           Icons.arrow_forward_ios,
+                          color: Theme.of(context).iconTheme.color,
+
+
                         ),
                       ],
                     ),

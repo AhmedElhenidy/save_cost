@@ -66,23 +66,33 @@ class _ProductsScreenState extends State<ProductsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: TextFormField(
-          onTap: () {
+        title: Container(
+          height: 45,
+          child: TextFormField(
+            onTap: () {
 
-            Navigator.push(context, MaterialPageRoute(builder: (builder)=>SearchScreen()));
-          },
+              Navigator.push(context, MaterialPageRoute(builder: (builder)=>SearchScreen()));
+            },
 
-          decoration: InputDecoration(
+            decoration: InputDecoration(
+               border: OutlineInputBorder(
+                 borderRadius: BorderRadius.circular(10)
+               ),
+              filled: true,
+              fillColor: Theme.of(context).scaffoldBackgroundColor,
+              //labelText: 'Search',
+               label: Text(
+                 'Search',
+                 style: Theme.of(context).textTheme.subtitle1,
+               ),
+              prefixIcon: Icon(
+                Icons.search,
+                color: Theme.of(context).iconTheme.color,
+              ),
 
-            filled: true,
-            fillColor: Colors.white,
-            labelText: 'search',
-            prefixIcon: Icon(
-              Icons.search,
             ),
-
           ),
         ),
         actions: [],
@@ -147,10 +157,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 children: [
                   Text(
                     'Categories',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.w800,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                   SizedBox(
                     height: 20.0,
@@ -176,7 +183,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                 fit: BoxFit.fitWidth,
                               ),
                               Container(
-                                color:Colors.black.withOpacity(.8),
+                                color:Theme.of(context).backgroundColor,
 
                                 width: 100.0,
                                 child: Text(
@@ -185,9 +192,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
 
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
+                                  style: Theme.of(context).textTheme.bodyText1,
                                 ),
                               ),
                             ],
@@ -206,10 +211,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   ),
                   Text(
                     'New Products',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.w800,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ],
               ),
@@ -238,7 +240,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ProductDetailsScreen(products[index])));
                     },
                     child: Container(
-                      color:Colors.white,
+                      color:Theme.of(context).scaffoldBackgroundColor,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -342,7 +344,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                         child: Icon(
                                           Icons.favorite,
                                           size: 20.0,
-                                          color: products[index].isFavourite?Colors.orange:Colors.white,
+                                          color: products[index].isFavourite?Colors.purple:Colors.white,
                                         ),
                                       ),
                                     ),

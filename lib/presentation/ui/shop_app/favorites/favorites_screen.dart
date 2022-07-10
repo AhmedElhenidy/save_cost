@@ -118,20 +118,19 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               children: [
                 Text(
                  product.name??"",
-                  style: TextStyle(
-                    fontSize: 14,
-                    height: 1.3,
-                  ),
+                  style:Theme.of(context).textTheme.bodyText1 ,
+                  // TextStyle(
+                  //   fontSize: 14,
+                  //   height: 1.3,
+                  // ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
+                SizedBox(height: 5,),
                 Text(
                   product.description??"",
-                  style: TextStyle(
-                    fontSize: 14,
-                    height: 1.3,
-                  ),
-                  maxLines: 4,
+                  maxLines: 2,
+                  style: Theme.of(context).textTheme.subtitle1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Spacer(),
@@ -178,11 +177,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                       },
                       icon: CircleAvatar(
                         radius: 15.0,
-                        backgroundColor:true? Colors.purple:Colors.grey,
+                        backgroundColor:true? Colors.grey:Colors.grey,
                         child: Icon(
                           Icons.favorite,
                           size: 20.0,
-                          color: Colors.orange,
+                          color: Colors.purple,
                         ),
                       ),
 
