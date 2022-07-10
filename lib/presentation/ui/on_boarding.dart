@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:save_cost/domain/model/on_boarding_model.dart';
 import 'package:save_cost/presentation/ui/authentication/login_screen.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class OnBoardingScreen extends StatefulWidget
 
 {
@@ -15,34 +16,30 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   List<BoardingModel> boarding = [
     BoardingModel(
       image:'assets/images/onboard .jpg',
-      title:'onboard 1 _Shopping',
+      title:'Easy Shopping',
       body:'explore many products',
     ),
     BoardingModel(
       image:'assets/images/choose best price.jpg',
-      title:'onboard 2_Shopping',
+      title:'Shopping',
       body:'choose the best price',
     ),
     BoardingModel(
       image:'assets/images/car share .jpg',
-      title:'onboard 1 _Sharing trip',
+      title:'Sharing trip',
       body:'Share your trip with others',
     ),
     BoardingModel(
       image:'assets/images/connect with others.jpg',
-      title:'onboard 2_Sharing trip',
+      title:'Carpool with other',
       body:'connect with others and make new experience',
     ),
     BoardingModel(
       image:'assets/images/save your money.jpg',
-      title:'onboard 3',
+      title:'Split cost',
       body:'Save your money',
     ),
-    BoardingModel(
-      image:'assets/images/client reviews.png',
-      title:'onboard 4',
-      body:'see client Reviews',
-    ),
+
   ];
 
   bool islast=false;
@@ -87,21 +84,21 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
 
 
-            // Row(children: [
-            //   // SmoothPageIndicator(
-            //   //   effect: ExpandingDotsEffect(
-            //   //
-            //   //     dotColor: Colors.grey,
-            //   //     dotHeight: 10,
-            //   //     expansionFactor: 6,
-            //   //     dotWidth: 10,
-            //   //     spacing: 5.0,
-            //   //   ),
-            //
-            //     controller: boardController,
-            //     count: boarding.length,
-            //   ),
+            Row(children: [
+              SmoothPageIndicator(
+                effect: ExpandingDotsEffect(
 
+                  dotColor: Colors.grey,
+                  dotHeight: 10,
+                  expansionFactor: 4,
+                  dotWidth: 10,
+                  spacing: 5.0,
+                ),
+
+                controller: boardController,
+                count: boarding.length,
+              ),
+             Spacer(),
               FloatingActionButton(
                 onPressed: ()
                 {
@@ -123,14 +120,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
 
                 },
-                child:Icon(Icons.arrow_forward_ios),
+                child:Icon(
+                    Icons.arrow_forward_ios),
 
               ),
             ],),
 
-          // ],
+          ],
         ),
-      // ),
+      ),
 
 
 
