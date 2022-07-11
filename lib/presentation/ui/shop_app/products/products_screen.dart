@@ -68,6 +68,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
+        //elevation: 1,
         title: Container(
           height: 45,
           child: TextFormField(

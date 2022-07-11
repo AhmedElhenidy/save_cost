@@ -43,6 +43,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 4,
         title: Text('Favorites'),
         actions: [
           IconButton(

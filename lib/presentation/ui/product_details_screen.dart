@@ -19,6 +19,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 4,
         title: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

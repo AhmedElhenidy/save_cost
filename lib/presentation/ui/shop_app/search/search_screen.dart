@@ -38,12 +38,20 @@ class SearchScreen extends StatelessWidget {
                     horizontal: 20.0,
                   ),
                   border: OutlineInputBorder(),
-                  label: const Text(
+                  focusedBorder: OutlineInputBorder(
+                    // borderRadius: BorderRadius.circular(25.0),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).colorScheme.background,
+                    ),),
+
+                  label:  Text(
                     'Search',
+                    style: Theme.of(context).textTheme.subtitle1,
                   ),
                   prefixIcon: (
-                      const Icon(
+                       Icon(
                         Icons.search ,
+                         color: Theme.of(context).iconTheme.color,
                       )
                   ),
 
@@ -155,9 +163,9 @@ class SearchScreen extends StatelessWidget {
                       },
                       icon: CircleAvatar(
                         radius: 15.0,
-                        backgroundColor:true? Colors.purple:Colors.grey,
+                        backgroundColor:true? Colors.grey:Colors.grey,
                         child: Icon(
-                          Icons.favorite_border,
+                          Icons.favorite,
                           size: 20.0,
                           color: Colors.white,
                         ),

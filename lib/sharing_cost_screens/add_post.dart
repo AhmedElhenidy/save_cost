@@ -40,22 +40,51 @@ class _AddTripState extends State<AddTrip> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: defaultFormField(
-                  label: 'Destination',
+                child:
+                TextFormField(
                   controller: titleController,
-                  type:TextInputType.text,
-
-                  validate: (value){
+                  keyboardType:TextInputType.text,
+                  validator: (value){
                     if(value!.isEmpty){
                       return 'Destination must not be empty';
 
                     }
                     return null;
                   },
-                  prefix:Icons.title ,
+                  decoration: InputDecoration(
+                    border:OutlineInputBorder() ,
+                    focusedBorder: OutlineInputBorder(
+                     // borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.background,
+                      ),),
+                    prefixIcon: Icon(
+                      Icons.title,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+
+                    label:  Text(
+                      'Destination',
+                        style: Theme.of(context).textTheme.subtitle1,),
+                  ) ,
 
 
                 ),
+                // defaultFormField(
+                //   label: 'Destination',
+                //   controller: titleController,
+                //   type:TextInputType.text,
+                //
+                //   validate: (value){
+                //     if(value!.isEmpty){
+                //       return 'Destination must not be empty';
+                //
+                //     }
+                //     return null;
+                //   },
+                //   prefix: Icons.title ,
+                // ),
+
               ),
 
               Padding(
@@ -83,9 +112,11 @@ class _AddTripState extends State<AddTrip> {
                   },
                   decoration: InputDecoration(
                     border:OutlineInputBorder() ,
-                    prefixIcon: Icon(Icons.calendar_today ),
+                    prefixIcon: Icon(Icons.calendar_today ,
+                      color: Theme.of(context).iconTheme.color,),
 
-                    label: const Text('Date'),
+                    label:  Text('Date',
+                      style: Theme.of(context).textTheme.subtitle1,),
                   ) ,
                   keyboardType:TextInputType.text,
 
@@ -123,9 +154,14 @@ class _AddTripState extends State<AddTrip> {
                    },
                   decoration: InputDecoration(
                     border:OutlineInputBorder() ,
-                      prefixIcon: Icon(Icons.watch_later_outlined),
+                      prefixIcon: Icon(
+                        Icons.watch_later_outlined,
+                        color: Theme.of(context).iconTheme.color,
 
-                      label: const Text('Time'),
+                  ),
+
+                      label:  Text('Time',
+                        style: Theme.of(context).textTheme.subtitle1,),
                          ) ,
                    keyboardType:TextInputType.text,
 
@@ -139,22 +175,30 @@ class _AddTripState extends State<AddTrip> {
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: defaultFormField(
+                child:
+                  TextFormField(
+                    controller: CarController,
+                    keyboardType:TextInputType.text,
+                    validator: (value){
+                      if(value!.isEmpty){
+                        return 'Car model must not be empty';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
 
-                  label: 'Car Model',
-                  type:TextInputType.text,
-                  controller: CarController,
-                  validate: (value){
-                    if(value!.isEmpty){
-                      return 'Car model must not be empty';
+                      border:OutlineInputBorder() ,
+                      prefixIcon: Icon(
+                        Icons.car_repair,
+                        color: Theme.of(context).iconTheme.color,
 
-                    }
-                    return null;
-                  },
-                  prefix:Icons.car_repair ,
+                      ),
 
+                      label:  Text('Car Model',
+                        style: Theme.of(context).textTheme.subtitle1,),
+                    ) ,
+                  ),
 
-                ),
               ),
 
                 Column(

@@ -24,6 +24,7 @@ Widget defaultFormField ({
   decoration: InputDecoration(
     prefixIcon: Icon(
       prefix,
+
     ),
     // suffixIcon: suffix !=null ? IconButton(
     //   onPressed: SuffixPressed,

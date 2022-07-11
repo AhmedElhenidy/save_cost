@@ -1,33 +1,65 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:save_cost/presentation/components/theme_shared_preferences.dart';
-// class ThemeModel extends ChangeNotifier {
+import 'package:shared_preferences/shared_preferences.dart';
+//states
+// abstract class AppStates {}
+// class AppChangeModeState extends AppStates {}
 //
 //
-//  late bool isDark =false;
-//  //late  ThemeSharedPreferences themeSharedPreferences;
-//  bool get isDarkMode => isDark;
-//  ThemeMode (){
-//    isDark=false;
-//    //themeSharedPreferences=ThemeSharedPreferences();
-//    getThemePreferences();
-//  }
+// //cubit
+// class AppCubit extends Cubit <AppStates>
+// {
+//   AppCubit(AppStates initialState) : super(initialState);
+//   //static AppCubit get(context) => BlocProvider.of(context);
 //
-//  set isDarkMode (bool value)
-//  {
-//     isDark = value;
-//     //themeSharedPreferences.setTheme(value);
-//     notifyListeners();
-//  }
+//   bool isDark=false;
+// //ThemeMode appMode =ThemeMode.dark;
 //
-//  getThemePreferences()async{
-//    //isDark =await themeSharedPreferences.getTheme();
-//    notifyListeners();
-//  }
+//   void changeAppMode ()
+//   {
+//
+//     isDark = !isDark;
+//     //CacheHelper.putBoolean(key: "isDark", value: isDark).then((value){
+//     emit(AppChangeModeState());
+//     //});
+//
+//   }
 //
 // }
+
+class ThemeModel extends ChangeNotifier {
+
+
+  bool isDark =false;
+   ThemeSharedPreferences themeSharedPreferences= ThemeSharedPreferences();
+
+ bool get isDarkMode => isDark;
+
+
+ ThemeMode () async {
+   isDark =false;
+  themeSharedPreferences=ThemeSharedPreferences();
+   //SharedPreferences sharedpreferences =await SharedPreferences.getInstance();
+   getThemePreferences();
+ }
+
+ set isDarkMode (bool value)
+ {
+    isDark = value;
+    themeSharedPreferences.setTheme(value);
+    notifyListeners();
+ }
+
+ getThemePreferences()async{
+   isDark =await themeSharedPreferences.getTheme();
+   notifyListeners();
+ }
+
+}
 
 
 
@@ -119,9 +151,15 @@ import 'package:save_cost/presentation/components/theme_shared_preferences.dart'
 // }
 
 ThemeData darkTheme = ThemeData(
+  colorScheme: ColorScheme.dark(background: Colors.white),
+  backgroundColor: HexColor('333739'),
+  iconTheme: IconThemeData(
+    color:Colors.white,
+
+  ),
   primarySwatch: Colors.purple,
   scaffoldBackgroundColor: HexColor('333739'),
-  appBarTheme: AppBarTheme(
+  appBarTheme: AppBarTheme(toolbarTextStyle: TextStyle(color: Colors.green),
     titleSpacing: 20.0,
     systemOverlayStyle:SystemUiOverlayStyle(
       statusBarColor: HexColor('333739'),
@@ -130,7 +168,9 @@ ThemeData darkTheme = ThemeData(
     backgroundColor: HexColor('333739'),
 
     elevation:0.0 ,
-    titleTextStyle: TextStyle(
+
+    titleTextStyle:
+    TextStyle(
       color: Colors.white,
       fontSize: 20.0,
       fontWeight: FontWeight.bold,
@@ -151,6 +191,20 @@ ThemeData darkTheme = ThemeData(
     backgroundColor: HexColor('333739') ,
   ),
   textTheme: TextTheme(
+    subtitle2: TextStyle(
+
+      fontStyle:FontStyle.italic,
+
+      color: Colors.white,
+      fontSize: 30,
+
+    ),
+
+    bodyText2: TextStyle(
+      fontSize: 24.0,
+      fontWeight: FontWeight.w800,
+      color: Colors.white,
+    ),
 
     subtitle1: TextStyle(
       fontSize: 14,
@@ -167,6 +221,11 @@ ThemeData darkTheme = ThemeData(
 );
 
 ThemeData lightTheme = ThemeData(
+  iconTheme: IconThemeData(
+    color:Colors.black,
+
+  ),
+  backgroundColor: Colors.grey[350],
   primarySwatch: Colors.purple,
   scaffoldBackgroundColor: Colors.white,
   appBarTheme:const AppBarTheme(
@@ -201,13 +260,27 @@ ThemeData lightTheme = ThemeData(
     backgroundColor: Colors.white ,
   ),
   textTheme: TextTheme(
+    subtitle2: TextStyle(
+
+      fontStyle:FontStyle.italic,
+
+      color: Colors.black,
+      fontSize: 30,
+
+    ),
     bodyText2: TextStyle(
+      fontSize: 24.0,
+      fontWeight: FontWeight.w800,
+      color: Colors.black,
+    ),
+
+    subtitle1: TextStyle(
       fontSize: 14,
       height: 1.3,
       color: Colors.black,
     ),
     bodyText1: TextStyle(
-      fontSize: 20.0,
+      fontSize: 18,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),

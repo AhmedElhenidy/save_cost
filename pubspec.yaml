@@ -44,6 +44,7 @@ dependencies:
   sqflite: ^2.0.2+1
   shared_preferences: ^2.0.15
   provider: ^6.0.3
+  flutter_bloc: ^8.0.1
   switcher_button: ^0.0.4
   flutter_switch: ^0.3.2
   switcher: ^1.0.0

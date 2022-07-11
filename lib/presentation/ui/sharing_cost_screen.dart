@@ -25,9 +25,8 @@ var dateController = TextEditingController();
 int _currentIndex =0;
 List<Widget> _widgetOptions = <Widget>[
   TripsHome(),
-  ChekedTrip(),
+  // ChekedTrip(),
   AddTrip(),
-
   Profile(),
 ];
 
@@ -167,7 +166,7 @@ List<Widget> _widgetOptions = <Widget>[
     bottomNavigationBar:BottomNavigationBar(
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home',),
-        BottomNavigationBarItem(icon: Icon(Icons.check_circle_outline),label: 'checked',),
+        //BottomNavigationBarItem(icon: Icon(Icons.check_circle_outline),label: 'checked',),
         BottomNavigationBarItem(icon: Icon(Icons.add),label: 'add post',),
         BottomNavigationBarItem(icon: Icon(Icons.emoji_people),label: 'profile',),
 

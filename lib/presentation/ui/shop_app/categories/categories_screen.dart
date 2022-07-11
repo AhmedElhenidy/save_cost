@@ -15,6 +15,7 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 4,
         title: Text('Categories'),
         actions: [
           IconButton(
