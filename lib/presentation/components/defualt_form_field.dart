@@ -5,6 +5,7 @@ Widget defaultFormField ({
   required TextInputType type,
   required FormFieldValidator<String>? validate,
   required String label,
+  required  Color,
   required IconData prefix ,
   IconData? suffix ,
   Function? suffixPressed,
@@ -24,6 +25,7 @@ Widget defaultFormField ({
   decoration: InputDecoration(
     prefixIcon: Icon(
       prefix,
+      color: Color,
 
     ),
     // suffixIcon: suffix !=null ? IconButton(
@@ -34,7 +36,9 @@ Widget defaultFormField ({
     // ) : null ,
 
     labelText: label,
-
+     labelStyle: TextStyle(
+       color: Color,
+     ),
     border:const OutlineInputBorder(),
   ) ,
   validator:validate,

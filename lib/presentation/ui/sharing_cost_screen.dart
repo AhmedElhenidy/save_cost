@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:save_cost/sharing_cost_screens/add_post.dart';
-import 'package:save_cost/sharing_cost_screens/home.dart';
-import 'package:save_cost/sharing_cost_screens/profile.dart';
+import 'package:save_cost/sharing_cost_screens/add_post/add_post.dart';
+import 'package:save_cost/sharing_cost_screens/home_page/home.dart';
+import 'package:save_cost/sharing_cost_screens/profile/profile.dart';
 
 
 

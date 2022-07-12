@@ -77,10 +77,7 @@ Widget buildCircle({
     padding: EdgeInsets.all(all),
   
     color: color,
-  
-  
-  
-    child:child ,
+   child:child ,
   
   ),
 );

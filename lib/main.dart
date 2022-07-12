@@ -6,6 +6,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:save_cost/presentation/components/themes.dart';
 import 'package:save_cost/presentation/ui/authentication/login_screen.dart';
+import 'package:save_cost/presentation/ui/authentication/register_screen.dart';
 import 'package:save_cost/presentation/ui/choose_screen.dart';
 import 'package:save_cost/presentation/ui/product_details_screen.dart';
 import 'package:save_cost/presentation/ui/shop_app/settings/settings_screen.dart';
@@ -104,7 +105,6 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-
           darkTheme:  ThemeData(
             colorScheme: ColorScheme.dark(background: Colors.white),
             backgroundColor: HexColor('333739'),
@@ -174,39 +174,11 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-
           themeMode:ThemeMode.light,
-
           //theme:themeModel.isDarkMode? ThemeData.dark():ThemeData.light(),
-          //   theme: ThemeData(
-          // scaffoldBackgroundColor:Colors.white,
-          // appBarTheme: const AppBarTheme(
-          // backgroundColor: Colors.white,
-          // elevation: 0.0,
-          // centerTitle: true,
-          // titleTextStyle: TextStyle(
-          // color: Colors.black,
-          // fontWeight: FontWeight.bold,
-          // fontSize: 20.0,
-          // ),
-          // iconTheme: IconThemeData(
-          // color: Colors.black,
-          // ),
-          // systemOverlayStyle: SystemUiOverlayStyle(
-          // statusBarColor: Colors.white,
-          // statusBarIconBrightness: Brightness.dark,
-          // ),
-          // ),
-          // bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          // type: BottomNavigationBarType.fixed,
-          // selectedItemColor: Colors.purple,
-          // elevation: 20.0,
-          // ),
-          // ),
 
           home:
          FirebaseAuth.instance.currentUser==null?OnBoardingScreen():ChooseScreen(),
-
         );
       //
       // }),

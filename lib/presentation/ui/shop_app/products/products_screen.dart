@@ -311,7 +311,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                     // ),
                                     Spacer(),
                                     IconButton(
-                                      onPressed: () async{
+                                      onPressed: () async
+                                      {
                                         if( products[index].isFavourite == true){
                                           var result = await FavouriteServices().deleteProductFromFavourites(products[index].name!);
                                           if(result != 0){

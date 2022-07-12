@@ -26,7 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
   {
     return Scaffold (
       appBar: AppBar(
-        backgroundColor:Colors.teal,
+        elevation: 4,
+        backgroundColor:Colors.purple,
         title: Text (
           'Welcome to your app',
           style: TextStyle(color: Colors.white,),
@@ -39,29 +40,58 @@ class _LoginScreenState extends State<LoginScreen> {
             key: formKey,
             child: Column(
               children: [
-                SizedBox(height: 20,),
+                SizedBox(height: 40,),
                 Text(
 
                   'Login',
                   style:TextStyle(
                     fontSize: 40,
-                    color: Colors.black,
+                    //color: Theme.of(context).textTheme.bodyText1?.color,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 50,),
-                defaultFormField(
-                  controller: emailController,
-                  label: 'Email',
-                  prefix: Icons.email,
-                  type: TextInputType.emailAddress,
-                  validate: (value){
-                    if (value!.isEmpty){
-                      return'Email must not be empty';
+                SizedBox(height: 40,),
+                TextFormField(
+                  controller: passwordController,
+                  keyboardType:TextInputType.text,
+                  validator: (value){
+                    if(value!.isEmpty){
+                      return 'Email must not be empty';
+
                     }
                     return null;
                   },
+                  decoration: InputDecoration(
+                    border:OutlineInputBorder() ,
+
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                    label:  Text(
+                      'Email',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Theme.of(context).textTheme.bodyText1?.color,
+                      ),
+                    ),
+                  ) ,
+
+
                 ),
+                // defaultFormField(
+                //   controller: emailController,
+                //
+                //   label: 'Email',
+                //   prefix: Icons.email,
+                //   type: TextInputType.emailAddress,
+                //   validate: (value){
+                //     if (value!.isEmpty){
+                //       return'Email must not be empty';
+                //     }
+                //     return null;
+                //   },
+                // ),
                 SizedBox(height: 30,),
                 TextFormField(
                   validator: (value) {
@@ -81,12 +111,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     //
                     // ),
                     border: OutlineInputBorder(),
-                    label: const Text(
+
+                    label:  Text(
                       'Password',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Theme.of(context).textTheme.bodyText1?.color,
+                      ),
+
                     ),
                     prefixIcon: (
-                        const Icon(
+                         Icon(
                           Icons.lock,
+                           color: Theme.of(context).iconTheme.color,
                         )
                     ),
                     suffixIcon: IconButton(
@@ -97,34 +134,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       icon: Icon(
                         isPassword ? Icons.visibility : Icons.visibility_off,
+                        color:  Theme.of(context).iconTheme.color,
                       ),
                     ),
                   ),
                   obscureText: isPassword,
                   keyboardType: TextInputType.visiblePassword,
                 ),
-                // defaultFormField(
-                //   controller: passwordController,
-                //   label: 'Password',
-                //   prefix: Icons.lock,
-                //   suffix: isPassword ? Icons.visibility : Icons.visibility_off,
-                //   isPassword: isPassword,
-                //   // SuffixPressed: (){
-                //   //   setState(() {
-                //   //     isPassword=!isPassword;
-                //   //   });
-                //   // },
-                //   type: TextInputType.visiblePassword,
-                //
-                //   validate: (value){
-                //     if (value!.isEmpty){
-                //       return'password is to short';
-                //     }
-                //     return null;
-                //   },
-                // ),
+
                 SizedBox(height: 20,),
                 defaultButton(
+                  background: Colors.purple,
                   text: 'Login',
                   radius: 20,
                   function: (){
@@ -164,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       'Don\'t have an account ?  ',
                       style:TextStyle(
                         fontSize: 17,
-                        color: Colors.black,
+                        color: Theme.of(context).textTheme.bodyText1?.color,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -177,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         'Register Now',
                         style: TextStyle(
                           fontSize: 17,
-                          color: Colors.blue,
+                          color: Colors.purple[300],
                         ),
                       ),)
 

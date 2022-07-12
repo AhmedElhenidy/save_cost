@@ -2,6 +2,7 @@
 class Product {
   Product({
     this.name,
+    this.fillColor,
     this.price,
     this.address,
     this.description,
@@ -17,6 +18,7 @@ class Product {
 
   Product.fromJson(dynamic json) {
     name = json['name'];
+    fillColor = json['fillColor'];
     price = json['price'];
     address = json['address'];
     description = json['description'];
@@ -33,6 +35,7 @@ class Product {
   }
 
   String? name;
+  String? fillColor;
   String? categoryID;
   String? discount;
   int? price;
@@ -51,6 +54,7 @@ class Product {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['name'] = name;
+    map['fillColor'] = fillColor;
     map['price'] = price;
     map['address'] = address;
     map['description'] = description;

@@ -10,9 +10,9 @@ class NumbersWidget extends StatelessWidget{
       children:<Widget>[
         buildButton(context, '4.8','Ranking'),
         buildDivider(),
-        buildButton(context, '35','Following'),
+        buildButton(context, '3','Followers'),
         buildDivider(),
-        buildButton(context, '50','Followers'),
+        buildButton(context, '5','Posts'),
 
       ],
     ),
@@ -29,7 +29,6 @@ buildButton(BuildContext context, String value, String text) =>
       child:Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
-
         children:<Widget> [
           Text(
             value,
@@ -40,16 +39,6 @@ buildButton(BuildContext context, String value, String text) =>
             text,
             style: TextStyle( fontWeight: FontWeight.bold),
           ),
-
-
-
-
-
-
-
-
-
-
 
       ],
       ) ,

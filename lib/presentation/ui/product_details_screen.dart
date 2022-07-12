@@ -1,10 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:save_cost/domain/model/product_model.dart';
+import 'package:save_cost/domain/sqflite_services/favourites_service.dart';
 import 'package:save_cost/presentation/ui/shop_app/search/search_screen.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
  final Product myProduct;
+ List<Product> products= [] ;
 
    ProductDetailsScreen(this.myProduct,{Key? key}) : super(key: key);
 
@@ -104,17 +109,43 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ),
                   ),
                   IconButton(
-                    onPressed: ()
+                    onPressed: () async
                     {
+                      if( widget.myProduct.isFavourite == true){
+                        var result = await FavouriteServices().deleteProductFromFavourites(widget.myProduct.name!);
+                        if(result != 0){
+                          log(result.toString(),name: "FromIcon Button delete");
+                          setState((){
+                            widget.myProduct.isFavourite = false;
+                          });
+                        }
+                        else{
+                          log(result.toString(),name: "FromIcon Button else");
+                        }
+                      }
+                      else{
+                        var result = await FavouriteServices().addToFavourite(widget.myProduct);
+                        if(result != 0){
+                          log(result.toString(),name: "FromIcon Button");
+                          setState((){
+                            widget.myProduct.isFavourite = true;
+                          });
+                        }
+                        else{
+                          log(result.toString(),name: "FromIcon Button else");
+                        }
+                      }
                       print('ok');
+                      print(widget.myProduct.fillColor!);
+
                     },
                     icon: CircleAvatar(
                       radius: 15.0,
                       backgroundColor: Colors.grey,
                       child: Icon(
-                        Icons.favorite_border,
+                        Icons.favorite,
                         size: 20.0,
-                        color: Colors.white,
+                        color: widget.myProduct.isFavourite?Colors.purple:Colors.white,
                       ),
                     ),
                   ),
@@ -140,12 +171,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           shape: BoxShape.circle,
                           border: Border.all(
 
-                              color: Color(0xFF356C95)),
+                             color: Color(0xFF356C95)),
                         ),
                         child:
                         DecoratedBox(
                           decoration: BoxDecoration(
-                            //color: widget.myProduct.color! ,
+                           // color:widget.myProduct.fillColor! ,
+                            //color: Colors.black,
+                            color:HexColor(widget.myProduct.fillColor!),
+                              //double.parse(widget.myProduct.fillColor!),
+                            //widget.myProduct?.fillColor ,
                             shape: BoxShape.circle,
                           ),
                         ),
@@ -167,6 +202,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                      fontSize: 13,
                     ),
                   ),
+
                   Text(
                     widget.myProduct.seller!,
                     style: TextStyle(

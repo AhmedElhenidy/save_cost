@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:save_cost/presentation/components/defualt_form_field.dart';
 import 'package:save_cost/presentation/ui/sharing_cost_screen.dart';
-import 'package:save_cost/sharing_cost_screens/home.dart';
+import 'package:save_cost/sharing_cost_screens/home_page/home.dart';
 
 class AddTrip extends StatefulWidget {  @override
   State<AddTrip> createState() => _AddTripState();
@@ -15,7 +15,8 @@ class AddTrip extends StatefulWidget {  @override
 
 class _AddTripState extends State<AddTrip> {
   File ? imageFile;
-  var titleController = TextEditingController();
+  var fromController = TextEditingController();
+  var toController = TextEditingController();
   var timeController = TextEditingController();
   var dateController = TextEditingController();
   var CarController = TextEditingController();
@@ -27,9 +28,10 @@ class _AddTripState extends State<AddTrip> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 4,
         title: Text('Add Post',
-          style: TextStyle(color:Colors.white ),),
-        backgroundColor: Colors.teal,
+          ),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body:
       ListView(
@@ -42,30 +44,58 @@ class _AddTripState extends State<AddTrip> {
                 padding: const EdgeInsets.all(20.0),
                 child:
                 TextFormField(
-                  controller: titleController,
+                  controller: fromController,
                   keyboardType:TextInputType.text,
                   validator: (value){
                     if(value!.isEmpty){
-                      return 'Destination must not be empty';
+                      return 'Current place must not be empty';
 
                     }
                     return null;
                   },
                   decoration: InputDecoration(
                     border:OutlineInputBorder() ,
-                    focusedBorder: OutlineInputBorder(
-                     // borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
-                        color: Theme.of(context).colorScheme.background,
-                      ),),
+
                     prefixIcon: Icon(
                       Icons.title,
                       color: Theme.of(context).iconTheme.color,
                     ),
-
                     label:  Text(
-                      'Destination',
+                      'From ',
                         style: Theme.of(context).textTheme.subtitle1,),
+                  ) ,
+
+
+                ),
+
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child:
+                TextFormField(
+                  controller: toController,
+                  keyboardType:TextInputType.text,
+                  validator: (value){
+                    if(value!.isEmpty){
+                      return 'Target place must not be empty';
+
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    border:OutlineInputBorder() ,
+                    // focusedBorder: OutlineInputBorder(
+                    //   // borderRadius: BorderRadius.circular(25.0),
+                    //   borderSide: BorderSide(
+                    //     color: Theme.of(context).colorScheme.background,
+                    //   ),),
+                    prefixIcon: Icon(
+                      Icons.title,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                    label:  Text(
+                      'To',
+                      style: Theme.of(context).textTheme.subtitle1,),
                   ) ,
 
 
@@ -126,9 +156,6 @@ class _AddTripState extends State<AddTrip> {
 
 
                 ),
-
-
-
 
               ),
               Padding(
@@ -230,7 +257,6 @@ class _AddTripState extends State<AddTrip> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Colors.grey,
-
                       border: Border.all(width: 8, color:Colors.white, ),
 
                     ),
@@ -248,14 +274,22 @@ class _AddTripState extends State<AddTrip> {
                 ),
 
 
-              ElevatedButton(
+              Container(
+                child: ElevatedButton(
 
-                onPressed: ()=> getImage(source: ImageSource.gallery),
+                  onPressed: ()=> getImage(source: ImageSource.gallery),
 
-                child: const Text('select car image from gallery',),
+                  child: const Text(
+                    'select car image from gallery',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ),
               Container(
-                color: Colors.teal,
+                color: Colors.purple,
+                height: 40,
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: MaterialButton(
@@ -268,17 +302,15 @@ class _AddTripState extends State<AddTrip> {
                         var current_user =
                         await FirebaseAuth.instance.currentUser!;
                          FirebaseFirestore.instance.collection('posts').doc().set({
-                             'place': titleController.text,
-                             'date': dateController.text,
+                           'From': fromController.text,
+                           'To': toController.text,
+                           'date': dateController.text,
                              'time': timeController.text,
                              'car model': CarController.text,
                              'user': 'users/' + current_user.uid,
 
                            },
-
-
                            );
-
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
@@ -287,28 +319,13 @@ class _AddTripState extends State<AddTrip> {
                                 }),
 
                           );
-
-
                         setState(() {
                           isClicked = true;
 
                         });
                       }
 
-
-
-
                     },
-
-
-
-
-
-
-
-
-
-
 
                     // minWidth: double.infinity,
                     child: const Text('Post',
@@ -323,6 +340,7 @@ class _AddTripState extends State<AddTrip> {
                 ),
               ),
 
+              SizedBox(height: 20,)
 
 
 

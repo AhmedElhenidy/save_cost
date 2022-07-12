@@ -4,7 +4,7 @@ import 'package:save_cost/domain/model/product_model.dart';
 import 'package:save_cost/presentation/components/default_button.dart';
 import 'package:save_cost/presentation/components/themes.dart';
 import 'package:save_cost/presentation/ui/authentication/login_screen.dart';
-import 'package:save_cost/sharing_cost_screens/profile.dart';
+import 'package:save_cost/sharing_cost_screens/profile/profile.dart';
 import 'package:switcher/core/switcher_size.dart';
 import 'package:switcher/switcher.dart';
 import 'package:provider/provider.dart';
@@ -163,7 +163,7 @@ class SettingScreen extends StatelessWidget
                        iconOff:Icons.circle,
                        iconOn: Icons.circle_outlined,
                        colorOff: Colors.blueGrey.withOpacity(0.3),
-                       colorOn: Colors.green,
+                       colorOn: Colors.purple,
 
                        onChanged: (bool state) {
                        },
@@ -197,7 +197,7 @@ class SettingScreen extends StatelessWidget
                        iconOff:Icons.circle,
                        iconOn: Icons.dark_mode,
                        colorOff: Colors.blueGrey.withOpacity(0.3),
-                       colorOn: Colors.green,
+                       colorOn: Colors.purple,
 
                        onChanged: (bool state)
                        {
@@ -227,7 +227,7 @@ class SettingScreen extends StatelessWidget
                        iconOff:Icons.circle,
                        iconOn: Icons.circle_outlined,
                        colorOff: Colors.blueGrey.withOpacity(0.3),
-                       colorOn: Colors.green,
+                       colorOn: Colors.purple,
 
                        onChanged: (bool state) {
                          //
@@ -254,7 +254,7 @@ class SettingScreen extends StatelessWidget
                        iconOff:Icons.circle,
                        iconOn: Icons.circle_outlined,
                        colorOff: Colors.blueGrey.withOpacity(0.3),
-                       colorOn: Colors.green,
+                       colorOn: Colors.purple,
 
                        onChanged: (bool state) {
                          //
@@ -280,7 +280,7 @@ class SettingScreen extends StatelessWidget
                        iconOff:Icons.circle,
                        iconOn: Icons.circle_outlined,
                        colorOff: Colors.blueGrey.withOpacity(0.3),
-                       colorOn: Colors.green,
+                       colorOn: Colors.purple,
 
                        onChanged: (bool state) {
                          //
@@ -297,7 +297,7 @@ class SettingScreen extends StatelessWidget
 
                  defaultButton
                    (
-
+                    background: Colors.purple[400],
                    function: ()
                    {
                      Navigator.pushAndRemoveUntil(

@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:save_cost/presentation/ui/authentication/Sign_up_for_trips_screen.dart';
 import 'package:save_cost/presentation/ui/sharing_cost_screen.dart';
 import 'package:save_cost/presentation/ui/shop_app/settings/settings_screen.dart';
@@ -13,6 +14,7 @@ class ChooseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
    return Scaffold(
      appBar: AppBar(
+       elevation: 4,
        //leading:
       //Icon(Icons.arrow_back_outlined),
        title: Text(
@@ -29,14 +31,16 @@ class ChooseScreen extends StatelessWidget {
               },
 
             ),
-
           ],
-        //#53C146   hexColor
-       //#54AD45
-      backgroundColor:Colors.green[500],
+        //hexColor
+        //#54AD45
+      backgroundColor: Colors.blueGrey.withOpacity(.9),
+      //HexColor("#54AD45"),
+      //Colors.green[500],
      ),
      body:ListView(
-       children: [
+       children:
+       [
          Container(
            padding: EdgeInsetsDirectional.only(top: 55,start: 10,),
            child: Text(
@@ -69,9 +73,7 @@ class ChooseScreen extends StatelessWidget {
                      children: [
 
                        Image (
-                         image: NetworkImage(
-                         'https://previews.123rf.com/images/tigatelu/tigatelu1312/tigatelu131200182/24469377-%EC%98%A8%EB%9D%BC%EC%9D%B8-%EC%87%BC%ED%95%91-%EB%A7%8C%ED%99%94.jpg',
-                         ),
+                         image: AssetImage('assets/images/shopping.jpg'),
                          height:200,
                          width: 250,
 
@@ -79,7 +81,8 @@ class ChooseScreen extends StatelessWidget {
 
                        Container(
 
-                         color: Colors.grey.withOpacity(.9),
+                         color:  Colors.blueGrey.withOpacity(.9),
+                         //Colors.grey.withOpacity(.9),
                          width: double.infinity,
                          padding: EdgeInsetsDirectional.only(top: 5,bottom: 5,),
                          child: Text(
@@ -99,7 +102,6 @@ class ChooseScreen extends StatelessWidget {
              ),
            ],
          ),
-
          Row(
            mainAxisAlignment: MainAxisAlignment.center,
            crossAxisAlignment:CrossAxisAlignment.center,
@@ -122,10 +124,7 @@ class ChooseScreen extends StatelessWidget {
                      alignment: Alignment.bottomCenter,
                      children: [
                        Image (
-                         image: NetworkImage(
-
-                           'https://cdn4.vectorstock.com/i/1000x1000/63/08/with-money-cute-car-character-cartoon-vector-18236308.jpg',
-                         ),
+                         image: AssetImage('assets/images/save_cost.jpg'),
                          height:200,
                          width: 250,
                         fit: BoxFit.fill,
@@ -154,9 +153,7 @@ class ChooseScreen extends StatelessWidget {
              ),
            ],
          ),
-
-
-]
+       ]
    ),
    );
 
