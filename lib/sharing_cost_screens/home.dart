@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:save_cost/presentation/components/default_button.dart';
+import 'package:save_cost/presentation/ui/sharing_cost_screen.dart';
 
 class TripsHome extends StatefulWidget {  @override
   State<TripsHome> createState() => _TripsHomeState();
@@ -29,7 +30,50 @@ class _TripsHomeState extends State<TripsHome> {
                 child: Text('Name',
                   style: Theme.of(context).textTheme.bodyText1,
                 ),) ,
-              trailing: Icon(Icons.list),
+              trailing: MaterialButton(
+                  onPressed: (){
+
+                    showDialog<String>(
+                      context:context,
+                      builder: (BuildContext context) => AlertDialog(
+
+                        title: MaterialButton(
+                            onPressed: (){
+                              Navigator.pop(context);
+
+                          showDialog<String>(
+                            context:context,
+                            builder: (BuildContext context) => AlertDialog(
+
+                              title: const Text('Do you want to delete post'),
+
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: const Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () =>Navigator.pop(context),
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ),
+
+                          );
+
+
+                        },
+                            child: Center(child: const Text('Delete'))),
+
+
+                      ),
+
+                    );
+
+
+
+                  },
+                  child: Icon(Icons.more_vert,)),
               subtitle: Text(
                 'Email Address ',
                 style: Theme.of(context).textTheme.subtitle1,
@@ -123,27 +167,50 @@ class _TripsHomeState extends State<TripsHome> {
               child: Row(mainAxisAlignment: MainAxisAlignment.end,
                 children:<Widget> [
                 Container(
-
+                  
+                height: 40,
                   color: Colors.teal,
                   child:
+                  //
+                  // defaultButton
+                  //   (
+                  //   function: ()
+                  //   {
+                  //   },
+                  //   text: "Join",
+                  //   radius: 20,
+                  //   width: 100,
+                  // ),
+                  MaterialButton(
 
-                  defaultButton
-                    (
-                    function: ()
-                    {
+
+
+                    onPressed: (){
+                      showDialog<String>(
+                        context:context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text('Phone Number'),
+                          content: const Text('01061960884'),
+                        ),
+                      );
+
                     },
-                    text: "Join",
-                    radius: 20,
-                    width: 100,
+                    child: Row(
+                      children: [
+
+
+                        Text('join',
+                        style:
+                        TextStyle(color: Colors.white,),
+
                   ),
-                  // MaterialButton(
-                  //
-                  //   onPressed: (){},child: Text('check',
-                  //   style:
-                  //   TextStyle(color: Colors.white,),
-                  //
-                  // ),
-                  // ),
+                        SizedBox(width: 10,),
+
+                        Icon(Icons.mobile_friendly_rounded,),
+                      ],
+                    ),
+                  ),
+
                 ),
                 SizedBox(width: 20,),
                 // Container(
@@ -263,28 +330,29 @@ class _TripsHomeState extends State<TripsHome> {
               child: Row(mainAxisAlignment: MainAxisAlignment.end,
                 children:<Widget> [
                   Container(
+                    height: 40,
 
                     color: Colors.teal,
                     child:
-                    defaultButton
-                      (
+                    // defaultButton
+                    //   (
+                    //
+                    //   function: ()
+                    //   {
+                    //
+                    //   },
+                    //   text: "Join",
+                    //   radius: 20,
+                    //   width: 100,
+                    // ),
+                    MaterialButton(
 
-                      function: ()
-                      {
+                      onPressed: (){},child: Text('check',
+                      style:
+                      TextStyle(color: Colors.white,),
 
-                      },
-                      text: "Join",
-                      radius: 20,
-                      width: 100,
                     ),
-                    // MaterialButton(
-                    //
-                    //   onPressed: (){},child: Text('check',
-                    //   style:
-                    //   TextStyle(color: Colors.white,),
-                    //
-                    // ),
-                    // ),
+                    ),
                   ),
                   SizedBox(width: 20,),
                   // Container(

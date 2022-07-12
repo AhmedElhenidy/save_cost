@@ -9,7 +9,7 @@ import 'package:save_cost/presentation/ui/authentication/login_screen.dart';
 import 'package:save_cost/presentation/ui/choose_screen.dart';
 import 'package:save_cost/presentation/ui/product_details_screen.dart';
 import 'package:save_cost/presentation/ui/shop_app/settings/settings_screen.dart';
-import 'package:save_cost/presentation/ui/shop_app/settings/test.dart';
+
 import 'package:save_cost/presentation/ui/shopping_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

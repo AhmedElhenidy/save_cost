@@ -1,12 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:save_cost/sharing_cost_screens/add_post.dart';
-import 'package:save_cost/sharing_cost_screens/checked.dart';
 import 'package:save_cost/sharing_cost_screens/home.dart';
 import 'package:save_cost/sharing_cost_screens/profile.dart';
 
 
-import 'trip_result_screen.dart';
 
 
 class SharingCost extends StatefulWidget {
