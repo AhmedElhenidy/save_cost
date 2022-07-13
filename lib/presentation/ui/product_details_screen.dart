@@ -230,7 +230,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
                   if(widget.myProduct.discount !="0")
                      Row(
-                      children: [
+                      children:
+                      [
                         Text(
                           '\tEGP ' + widget.myProduct.price!.toString(),
                           style: TextStyle(

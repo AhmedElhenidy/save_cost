@@ -70,14 +70,16 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       const Center(child: CircularProgressIndicator(),)
           :
       ListView.separated(
-        itemBuilder: (context,index)=> InkWell(
+        itemBuilder: (context,index){
+           return InkWell(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ProductDetailsScreen(products[index])));
+             // Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ProductDetailsScreen(products[index])));
+              //Navigator.push(context, MaterialPageRoute(builder: (builder)=>ProductDetailsScreen(products[index])));
             },
-            child: BuildFavItem(product: products[index])),
-        separatorBuilder:(context,index)=> myDivider() ,
-        itemCount: products.length,
-
+            child: BuildFavItem(product: products[index]));
+        },
+            separatorBuilder:(context,index)=> myDivider(),
+            itemCount: products.length,
       ),
     );
   }
@@ -147,30 +149,41 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     Spacer(),
                     Row(
                       children: [
-                        // NEW PRICE
-                        Text(
-                          'EGP ${product.price}',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.purple,
-                          ),
+                        if(product.discount !="0")
+                        Row(
+                          children: [
+                            Text(
+                              'EGP ${product.price}',
+                              style: TextStyle(
+                                fontSize: 10,
+                                color: Colors.black,
+                                decoration: TextDecoration.lineThrough,
+                              ),
 
-                        ),
-                        SizedBox(
-                          width: 5.0,
-                        ),
-
-                        // OLD PRICE
-                        if( 1 !=0 && isOldPrice)
-                          Text(
-                            'EGP 350',
-                            style: TextStyle(
-                              fontSize: 10.0,
-                              color: Colors.grey,
-                              decoration: TextDecoration.lineThrough,
                             ),
+                            if( 1 !=0 && isOldPrice)
+                              Text(
+                                '\tEGP ' + (product.price! *(1-double.parse(product.discount!)*.01)).toString(),
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.purple,
 
+                                ),
+
+                              ),
+                          ],
+                        ),
+                        // OLD PRICE
+                        if(product.discount == "0")
+                          Text(
+                            '\tEGP '+ product.price!.toString(),
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
+
+
                         Spacer(),
                         IconButton(
                           onPressed: () async{

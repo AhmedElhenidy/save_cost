@@ -5,61 +5,65 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:save_cost/presentation/components/theme_shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-//states
-// abstract class AppStates {}
-// class AppChangeModeState extends AppStates {}
-//
-//
-// //cubit
-// class AppCubit extends Cubit <AppStates>
-// {
-//   AppCubit(AppStates initialState) : super(initialState);
-//   //static AppCubit get(context) => BlocProvider.of(context);
-//
-//   bool isDark=false;
-// //ThemeMode appMode =ThemeMode.dark;
-//
-//   void changeAppMode ()
-//   {
-//
-//     isDark = !isDark;
-//     //CacheHelper.putBoolean(key: "isDark", value: isDark).then((value){
-//     emit(AppChangeModeState());
-//     //});
-//
-//   }
-//
-// }
+// states
 
-class ThemeModel extends ChangeNotifier {
+abstract class AppStates {}
+class AppInitialState extends AppStates{}
+class AppChangeModeState extends AppStates {}
 
 
-  bool isDark =false;
-   ThemeSharedPreferences themeSharedPreferences= ThemeSharedPreferences();
+//cubit
+class AppCubit extends Cubit <AppStates>
+{
+  AppCubit() : super(AppInitialState());
+  static AppCubit get(context) => BlocProvider.of(context);
 
- bool get isDarkMode => isDark;
+  bool isDark=false;
+//ThemeMode appMode =ThemeMode.dark;
 
+  void changeAppMode ()
+  {
+     isDark =! isDark;
+     emit(AppChangeModeState());
+   //
+    //CacheHelper.putBoolean(key: "isDark", value: isDark).then((value){
 
- ThemeMode () async {
-   isDark =false;
-  themeSharedPreferences=ThemeSharedPreferences();
-   //SharedPreferences sharedpreferences =await SharedPreferences.getInstance();
-   getThemePreferences();
- }
+    //});
 
- set isDarkMode (bool value)
- {
-    isDark = value;
-    themeSharedPreferences.setTheme(value);
-    notifyListeners();
- }
-
- getThemePreferences()async{
-   isDark =await themeSharedPreferences.getTheme();
-   notifyListeners();
- }
+  }
 
 }
+
+
+// class ThemeModel extends ChangeNotifier {
+//
+//
+//   bool isDark =false;
+//     ThemeSharedPreferences themeSharedPreferences= ThemeSharedPreferences();
+//
+//  bool get isDarkMode => isDark;
+//
+//
+//  ThemeMode () async {
+//    isDark =false;
+//   themeSharedPreferences=ThemeSharedPreferences();
+//    //SharedPreferences sharedpreferences =await SharedPreferences.getInstance();
+//    getThemePreferences();
+//  }
+//
+//  set isDarkMode (bool value)
+//  {
+//     isDark = value;
+//     themeSharedPreferences.setTheme(value);
+//     notifyListeners();
+//  }
+//
+//  getThemePreferences()async{
+//    isDark =await themeSharedPreferences.getTheme();
+//    notifyListeners();
+//  }
+//
+// }
 
 
 

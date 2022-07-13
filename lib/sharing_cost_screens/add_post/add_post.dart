@@ -272,13 +272,9 @@ class _AddTripState extends State<AddTrip> {
 
                   ],
                 ),
-
-
               Container(
                 child: ElevatedButton(
-
                   onPressed: ()=> getImage(source: ImageSource.gallery),
-
                   child: const Text(
                     'select car image from gallery',
                     style: TextStyle(
@@ -339,12 +335,7 @@ class _AddTripState extends State<AddTrip> {
                   ),
                 ),
               ),
-
-              SizedBox(height: 20,)
-
-
-
-
+              SizedBox(height: 20,),
             ],
         ),
           ),

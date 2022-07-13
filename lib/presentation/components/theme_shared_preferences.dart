@@ -1,20 +1,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
- class ThemeSharedPreferences
-{
-  static const PREF_KEY ='preferences';
-  setTheme (bool value) async
-{
-  WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences sharedpreferences =await SharedPreferences.getInstance();
-  sharedpreferences.setBool( PREF_KEY, value);
-}
- getTheme() async{
-  SharedPreferences sharedpreferences =await SharedPreferences.getInstance();
-  return sharedpreferences.getBool(PREF_KEY) ?? false;
-}
- }
+//  class ThemeSharedPreferences
+// {
+//   static const PREF_KEY ='preferences';
+//   setTheme (bool value) async
+// {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   SharedPreferences sharedpreferences =await SharedPreferences.getInstance();
+//   sharedpreferences.setBool( PREF_KEY, value);
+// }
+//  getTheme() async{
+//   SharedPreferences sharedpreferences =await SharedPreferences.getInstance();
+//   return sharedpreferences.getBool(PREF_KEY) ?? false;
+// }
+//  }
 
 
 

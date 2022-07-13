@@ -65,11 +65,14 @@ class _TripsHomeState extends State<TripsHome> {
                             actions: <Widget>[
                               TextButton(
                                 onPressed: () => Navigator.pop(context),
-                                child: const Text('Cancel'),
+                                child: const Text('Cancel', ),
                               ),
                               TextButton(
                                 onPressed: () =>Navigator.pop(context),
-                                child: const Text('OK'),
+                                child: const Text('OK',
+                                style: TextStyle(
+                                  color: Colors.red
+                                ),),
                               ),
                             ],
                           ),
@@ -211,8 +214,12 @@ class _TripsHomeState extends State<TripsHome> {
                       showDialog<String>(
                         context:context,
                         builder: (BuildContext context) => AlertDialog(
-                          title: const Text('Phone Number'),
-                          content: const Text('01061960884'),
+                          title: const Text('If you want to join my trip, that is my '
+                              'Phone Number'),
+                          content: const Text('01061960884',
+                          style: TextStyle(fontSize: 16,
+                            color: Colors.purple,
+                          ),),
                         ),
                       );
 

@@ -12,7 +12,7 @@ class EditingProfilePage extends StatefulWidget {
 }
 
 class _EditingProfilePageState extends State<EditingProfilePage> {
-  File ? imageFile ;
+  XFile ? imageFile ;
   User user = UserPreferences.myUser;
   @override
   Widget build(BuildContext context) {
@@ -22,29 +22,32 @@ class _EditingProfilePageState extends State<EditingProfilePage> {
        padding: EdgeInsets.symmetric(horizontal: 32),
        physics: BouncingScrollPhysics(),
        children: [
-
            GestureDetector(
-
              onTap: (){
                getImage();
              },
-
-             child: CircleAvatar(
-               radius: MediaQuery.of(context).size.width*.20,
-               backgroundColor: Colors.grey,
-               backgroundImage:
-               imageFile==null
-               ? null
-               : FileImage(
-                  File(imageFile!.path)
+             child: Container
+               (
+               height: 150,
+               width: 150,
+               child: CircleAvatar(
+                 radius: //80,
+                 MediaQuery.of(context).size.width*.20,
+                 backgroundColor: Colors.grey,
+                 backgroundImage:
+                 imageFile==null
+                 ? null
+                 : FileImage(
+                    File(imageFile!.path)
+                 ),
+                 child: imageFile==null
+                     ?
+                 Icon(
+                   Icons.add_photo_alternate,
+                   color: Colors.white,
+                   size: MediaQuery.of(context).size.width*.20 ,
+                 ): null ,
                ),
-               child: imageFile==null
-                   ?
-               Icon(
-                 Icons.add_photo_alternate,
-                 color: Colors.white,
-                 size: MediaQuery.of(context).size.width*.20 ,
-               ): null ,
              ),
            ),
 
@@ -82,9 +85,10 @@ class _EditingProfilePageState extends State<EditingProfilePage> {
    );
   }
 
-  void getImage()async
+  final ImagePicker imagePicker =ImagePicker();
+  getImage ()async
   {
-    final imageFile= await ImagePicker().pickImage( source:  ImageSource.gallery);
+     imageFile= await imagePicker.pickImage( source:  ImageSource.gallery);
 
       setState(() {
         imageFile ;
