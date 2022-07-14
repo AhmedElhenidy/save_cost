@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:save_cost/domain/model/user_model.dart';
 import 'package:save_cost/sharing_cost_screens/add_post/add_post.dart';
 import 'package:save_cost/sharing_cost_screens/home_page/home.dart';
 import 'package:save_cost/sharing_cost_screens/profile/profile.dart';
@@ -16,16 +17,19 @@ class SharingCost extends StatefulWidget {
 
 class _SharingCostState extends State<SharingCost> {
   @override
+  List<UserModel> users= [] ;
 var titleController = TextEditingController();
 var timeController = TextEditingController();
 
 var dateController = TextEditingController();
 int _currentIndex =0;
-List<Widget> _widgetOptions = <Widget>[
+final List<Widget> _widgetOptions = <Widget>[
   TripsHome(),
   // ChekedTrip(),
   AddTrip(),
+
   Profile(),
+
 ];
 
   Widget build(BuildContext context) {

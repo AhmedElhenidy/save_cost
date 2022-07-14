@@ -2,7 +2,7 @@
 class CategoryModel {
   CategoryModel({
     this.name,
-  this.id,
+    this.id,
     this.imageURl});
 
   CategoryModel.fromJson(dynamic json) {

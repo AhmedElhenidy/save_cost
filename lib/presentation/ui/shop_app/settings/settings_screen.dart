@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:save_cost/domain/model/product_model.dart';
+import 'package:save_cost/domain/model/user_model.dart';
 import 'package:save_cost/presentation/components/default_button.dart';
 import 'package:save_cost/presentation/components/themes.dart';
 import 'package:save_cost/presentation/ui/authentication/login_screen.dart';
@@ -12,16 +13,16 @@ import 'package:provider/provider.dart';
 
 
 
-class SettingScreen extends StatelessWidget
+class SettingScreen extends StatefulWidget
 {
   var formKey=GlobalKey<FormState>();
   // var nameController =TextEditingController();
   // var emailController =TextEditingController();
   // var phoneController =TextEditingController();
-
+  List<UserModel> users= [] ;
   List<Product> products= [] ;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,index) {
    return BlocProvider(create: (BuildContext context) => AppCubit(),
      child: BlocConsumer<AppCubit,AppStates >(
        listener: ( context , state ){},
@@ -346,5 +347,11 @@ class SettingScreen extends StatelessWidget
 
 
 
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
   }
 }

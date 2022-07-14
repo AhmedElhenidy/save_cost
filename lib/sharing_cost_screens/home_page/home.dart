@@ -4,15 +4,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:save_cost/domain/model/trip_post_model.dart';
+import 'package:save_cost/domain/model/user_model.dart';
 import 'package:save_cost/presentation/components/default_button.dart';
 import 'package:save_cost/presentation/ui/sharing_cost_screen.dart';
 
-class TripsHome extends StatefulWidget {  @override
+class TripsHome extends StatefulWidget
+{
+  //String userId;
+ // TripsHome(this.userId,{Key? key}) : super(key: key);
+
+  @override
 State<TripsHome> createState() => _TripsHomeState();
 }
 
 class _TripsHomeState extends State<TripsHome> {
   List<Post> posts= [] ;
+  List<UserModel> users = [] ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +31,7 @@ class _TripsHomeState extends State<TripsHome> {
       ),
       body:FutureBuilder<QuerySnapshot>(
         future: FirebaseFirestore.instance.collection("posts").get(),
+
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           switch(snapshot.connectionState)
           {
