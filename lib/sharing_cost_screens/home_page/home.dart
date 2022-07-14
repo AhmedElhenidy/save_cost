@@ -70,6 +70,7 @@ class _TripsHomeState extends State<TripsHome> {
                               style: Theme.of(context).textTheme.subtitle1,
                             ),
                             trailing: MaterialButton(
+
                               child: Icon(Icons.more_vert,),
 
                               onPressed: ()
@@ -289,10 +290,14 @@ class _TripsHomeState extends State<TripsHome> {
                                 // ),
                               ],),
                           ),
-                          SizedBox(height: 40,),
+                          //SizedBox(height: 40,),
+                          buildDivider(),
+
+
 
                         ],
                       ),
+
                     );
                   },
                   separatorBuilder: (context,index)=>SizedBox(
@@ -309,12 +314,14 @@ class _TripsHomeState extends State<TripsHome> {
         },
       ),
 
-
-
-
-
-
-
-
     );
-  }}
+  }
+  Widget buildDivider() => Container(
+      height: 24,
+
+      child: Divider(
+        color: Theme.of(context).iconTheme.color,
+        // color: Colors.black45,
+        thickness: 1.5,
+      ));
+}
