@@ -2,7 +2,8 @@
 class CategoryModel {
   CategoryModel({
     this.name,
-  this.id,this.imageURl});
+  this.id,
+    this.imageURl});
 
   CategoryModel.fromJson(dynamic json) {
     name = json['name'];

@@ -298,12 +298,12 @@ class _AddTripState extends State<AddTrip> {
                         var current_user =
                         await FirebaseAuth.instance.currentUser!;
                          FirebaseFirestore.instance.collection('posts').doc().set({
-                           'From': fromController.text,
-                           'To': toController.text,
+                           'from': fromController.text,
+                           'to': toController.text,
                            'date': dateController.text,
                              'time': timeController.text,
-                             'car model': CarController.text,
-                             'user': 'users/' + current_user.uid,
+                             'carModel': CarController.text,
+                             'user': current_user.uid,
 
                            },
                            );

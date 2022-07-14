@@ -51,7 +51,8 @@ class Product {
   String? seller;
   bool isFavourite = false;
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson()
+  {
     final map = <String, dynamic>{};
     map['name'] = name;
     map['fillColor'] = fillColor;
