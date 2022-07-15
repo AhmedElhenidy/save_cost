@@ -94,6 +94,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         padding: const EdgeInsets.all(20.0),
         child: Container(
           height: 120.0,
+
           child: Row(
             //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -142,7 +143,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     SizedBox(height: 5,),
                     Text(
                       product.description??"",
-                      maxLines: 2,
+                      maxLines: 1,
                       style: Theme.of(context).textTheme.subtitle1,
                       overflow: TextOverflow.ellipsis,
                     ),

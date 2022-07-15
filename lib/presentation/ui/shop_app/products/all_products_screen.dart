@@ -154,7 +154,7 @@ class _AllProductsScreenState extends State<AllProductsScreen> {
         Padding(
           padding: const EdgeInsets.all(12.0),
           child: Container(
-            height: 300,
+            //height: 350,
             width: MediaQuery.of(context).size.width,
             child: GridView.builder(
               scrollDirection:Axis.vertical,
@@ -163,7 +163,7 @@ class _AllProductsScreenState extends State<AllProductsScreen> {
                 crossAxisCount: 2,
                 mainAxisSpacing: 1.0,
                 crossAxisSpacing: 16.0,
-                childAspectRatio: 1/1.2,
+                childAspectRatio: 1/1.3,
               ),
 
 

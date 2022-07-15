@@ -103,7 +103,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text (
-                      widget.myProduct.name! + '\t  -  '+widget.myProduct.color!,
+                      widget.myProduct.name! + '\n'
+                          ''+widget.myProduct.color!,
                     style: TextStyle(
                       fontSize: 15,
 
@@ -159,9 +160,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               Row(
                 children: [
                   Column(
+
                     children: [
                       Text(
-                        'Color',
+                        'Color  ',
                       ),
                       Container(
 

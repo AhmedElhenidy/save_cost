@@ -23,52 +23,154 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
 
-  //List<UserModel> users = [] ;
+  List<UserModel> users = [] ;
   @override
   Widget build(BuildContext context) {
     final user = UserPreferences.myUser;
-    final UserModel myUser;
-     List<UserModel> users= [] ;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 4,
         title: Text('Profile',),
          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
-      body:ListView(
-        physics: BouncingScrollPhysics(),
-        children: [
-          SizedBox(height: 10,),
-          ProfileWidget(
-            imagePath: user.imagePath,
-            onClicked: () async {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context)=> EditingProfilePage()),
-              );
-            },
-          ),
-          const SizedBox(height: 24,),
-          buildName(user),
-          const SizedBox(height: 24,),
-          NumbersWidget(),
-          const SizedBox(height: 24,),
-          buildAbout(user),
+      body:Container(
+        child: ListView(
+           physics: BouncingScrollPhysics(),
+          children: [
+            SizedBox(height: 10,),
+            ProfileWidget(
+              imagePath: user.imagePath,
+              onClicked: () async {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context)=> EditingProfilePage()),
+                );
+              },
+            ),
+            const SizedBox(height: 24,),
+            buildName(user),
+            const SizedBox(height: 24,),
+            NumbersWidget(),
+            const SizedBox(height: 24,),
+            buildAbout(user),
 
 
 
 
-        ],
+          ],
+        ),
       ),
-
-
-
+      // FutureBuilder<QuerySnapshot>(
+      //   future: FirebaseFirestore.instance.collection("users").get(),
+      //
+      //   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+      //     switch(snapshot.connectionState)
+      //     {
+      //       case ConnectionState.none:
+      //         return SizedBox();
+      //       case ConnectionState.waiting:
+      //         return Center(
+      //           child: Text("Loading...."),
+      //         );
+      //       case ConnectionState.active:
+      //         return SizedBox();
+      //       case ConnectionState.done:
+      //         log("${snapshot.data?.docs.length.toString()}");
+      //         users.clear();
+      //         snapshot.data?.docs.forEach((element) {
+      //           log(element["id"]);
+      //           users.add(UserModel.fromJson(element));
+      //         });
+      //         return  ListView.separated(
+      //
+      //           physics: BouncingScrollPhysics(),
+      //           separatorBuilder: (BuildContext context, int index) {
+      //             return
+      //                 SizedBox();
+      //           },
+      //           itemBuilder: (BuildContext context, int index) {
+      //             return Container(
+      //               child: Column(
+      //                 // physics: BouncingScrollPhysics(),
+      //                 children: [
+      //                   SizedBox(height: 10,),
+      //                   ProfileWidget(
+      //                     imagePath: user.imagePath,
+      //                     onClicked: () async {
+      //                       Navigator.of(context).push(
+      //                         MaterialPageRoute(builder: (context)=> EditingProfilePage()),
+      //                       );
+      //                     },
+      //                   ),
+      //                   const SizedBox(height: 24,),
+      //                   buildName(user),
+      //                   const SizedBox(height: 24,),
+      //                   NumbersWidget(),
+      //                   const SizedBox(height: 24,),
+      //                   buildAbout(user),
+      //
+      //
+      //
+      //
+      //                 ],
+      //               ),
+      //             );
+      //           },
+      //           itemCount: users.length,
+      //
+      //         ) ;
+      //
+      //
+      //
+      //
+      //
+      //     }
+      //   },
+      // ),
 
     );
   }
  // final UserModel myUser;
-  List<UserModel> users= [] ;
+  //List<UserModel> users= [] ;
   //widget.myUsers.userName
-  Widget buildName(User user) =>   Column(
+  Widget buildName(User user) =>
+  //     ListView.separated(
+  //
+  //   itemBuilder: (BuildContext context, int index) {
+  //     return Column(
+  //       children:
+  //       [
+  //         Text(
+  //           //myUser.userName!,
+  //           //"${users[index].userName}",
+  //            user.name,
+  //           style: TextStyle(
+  //             fontWeight: FontWeight.bold,
+  //             fontSize:30,
+  //           ),
+  //         ),
+  //         const SizedBox(height: 4.0,),
+  //         Text(
+  //           user.phone,
+  //           style: Theme.of(context).textTheme.bodyText1,
+  //         ),
+  //         const SizedBox(height: 4.0,),
+  //         Text(
+  //           user.email,
+  //           style: TextStyle(
+  //             color: Colors.grey,
+  //
+  //           ),
+  //         ),
+  //
+  //       ],
+  //     );
+  //   },
+  //   separatorBuilder: (BuildContext context, int index) { return SizedBox();  },
+  //   itemCount: users.length,
+  //
+  // );
+      Column(
     children:
     [
       Text(
@@ -96,42 +198,7 @@ class _ProfileState extends State<Profile> {
 
     ],
   );
-      // ListView.separated(
-      //
-      //   itemBuilder: (BuildContext context, int index) {
-      //     return Column(
-      //       children:
-      //       [
-      //         Text(
-      //           //myUser.userName!,
-      //           //"${users[index].userName}",
-      //            user.name,
-      //           style: TextStyle(
-      //             fontWeight: FontWeight.bold,
-      //             fontSize:30,
-      //           ),
-      //         ),
-      //         const SizedBox(height: 4.0,),
-      //         Text(
-      //           user.phone,
-      //           style: Theme.of(context).textTheme.bodyText1,
-      //         ),
-      //         const SizedBox(height: 4.0,),
-      //         Text(
-      //           user.email,
-      //           style: TextStyle(
-      //             color: Colors.grey,
-      //
-      //           ),
-      //         ),
-      //
-      //       ],
-      //     );
-      //   },
-      //   separatorBuilder: (BuildContext context, int index) { return SizedBox();  },
-      //   itemCount: 1,
-      //
-      // );
+
 
 
 
@@ -176,7 +243,6 @@ Widget buildAbout (User user)=>Container(
   ),
 );
 }
-
 
 // call user
 class User {

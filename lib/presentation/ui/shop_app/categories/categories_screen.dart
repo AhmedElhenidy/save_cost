@@ -57,7 +57,8 @@ class CategoriesScreen extends StatelessWidget {
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (ctx)=>AllProductsScreen(categories[index].id??"1")));
                     },
-                    child: Row(
+                    child: Row
+                      (
                       children:
                       [
                         Image(

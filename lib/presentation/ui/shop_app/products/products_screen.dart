@@ -221,7 +221,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
               height: 20.0,
             ),
             Container(
-              height: 300,
+              //height: 300,
               width: MediaQuery.of(context).size.width,
               child: GridView.builder(
                 itemCount: products.length,
@@ -229,7 +229,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   crossAxisCount: 2,
                   mainAxisSpacing: 1.0,
                   crossAxisSpacing: 16.0,
-                  childAspectRatio: 1/1.2,
+                  childAspectRatio: 1/1.3,
                 ),
 
 
@@ -241,6 +241,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ProductDetailsScreen(products[index])));
                     },
                     child: Container(
+                      height: 100,
+                      width: 100,
                       color:Theme.of(context).scaffoldBackgroundColor,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -271,89 +273,91 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(12.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  products[index].name??""+"\n"+
-                                      products[index].description!+"\n"+
-                                      products[index].size!+"\n",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    height: 1.3,
+                            child: Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    products[index].name??""+"\n"+
+                                        products[index].description!+"\n"+
+                                        products[index].size!+"\n",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      height: 1.3,
+                                    ),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
 
-                                Row(
-                                  children: [
-                                    Text(
-                                      products[index].price.toString()+ '\tEGP',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.purple,
+                                  Row(
+                                    children: [
+                                      Text(
+                                        products[index].price.toString()+ '\tEGP',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.purple,
+                                        ),
+
                                       ),
+                                      SizedBox(
+                                        width: 5.0,
+                                      ),
+                                      //if(product.discount !=0)
+                                      // Text(
+                                      //   '350',
+                                      //   style: TextStyle(
+                                      //     fontSize: 10.0,
+                                      //     color: Colors.grey,
+                                      //     decoration: TextDecoration.lineThrough,
+                                      //   ),
+                                      //
+                                      // ),
+                                      Spacer(),
+                                      IconButton(
+                                        onPressed: () async
+                                        {
+                                          if( products[index].isFavourite == true){
+                                            var result = await FavouriteServices().deleteProductFromFavourites(products[index].name!);
+                                            if(result != 0){
+                                              log(result.toString(),name: "FromIcon Button delete");
+                                              setState((){
+                                                products[index].isFavourite = false;
+                                              });
+                                            }
+                                            else{
+                                              log(result.toString(),name: "FromIcon Button else");
+                                            }
+                                          }
+                                         else{
+                                            var result = await FavouriteServices().addToFavourite(products[index]);
+                                            if(result != 0){
+                                              log(result.toString(),name: "FromIcon Button");
+                                              setState((){
+                                                products[index].isFavourite = true;
+                                              });
+                                            }
+                                            else{
+                                              log(result.toString(),name: "FromIcon Button else");
+                                            }
+                                          }
 
-                                    ),
-                                    SizedBox(
-                                      width: 5.0,
-                                    ),
-                                    //if(product.discount !=0)
-                                    // Text(
-                                    //   '350',
-                                    //   style: TextStyle(
-                                    //     fontSize: 10.0,
-                                    //     color: Colors.grey,
-                                    //     decoration: TextDecoration.lineThrough,
-                                    //   ),
-                                    //
-                                    // ),
-                                    Spacer(),
-                                    IconButton(
-                                      onPressed: () async
-                                      {
-                                        if( products[index].isFavourite == true){
-                                          var result = await FavouriteServices().deleteProductFromFavourites(products[index].name!);
-                                          if(result != 0){
-                                            log(result.toString(),name: "FromIcon Button delete");
-                                            setState((){
-                                              products[index].isFavourite = false;
-                                            });
-                                          }
-                                          else{
-                                            log(result.toString(),name: "FromIcon Button else");
-                                          }
-                                        }
-                                       else{
-                                          var result = await FavouriteServices().addToFavourite(products[index]);
-                                          if(result != 0){
-                                            log(result.toString(),name: "FromIcon Button");
-                                            setState((){
-                                              products[index].isFavourite = true;
-                                            });
-                                          }
-                                          else{
-                                            log(result.toString(),name: "FromIcon Button else");
-                                          }
-                                        }
-
-                                       // print('ok');
-                                      },
-                                      icon: CircleAvatar(
-                                        radius: 15.0,
-                                        backgroundColor: Colors.grey,
-                                        child: Icon(
-                                          Icons.favorite,
-                                          size: 20.0,
-                                          color: products[index].isFavourite?Colors.purple:Colors.white,
+                                         // print('ok');
+                                        },
+                                        icon: CircleAvatar(
+                                          radius: 15.0,
+                                          backgroundColor: Colors.grey,
+                                          child: Icon(
+                                            Icons.favorite,
+                                            size: 20.0,
+                                            color: products[index].isFavourite?Colors.purple:Colors.white,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
+                                    ],
+                                  ),
 
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ],
