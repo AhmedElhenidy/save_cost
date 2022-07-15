@@ -15,14 +15,20 @@ import 'package:provider/provider.dart';
 
 class SettingScreen extends StatefulWidget
 {
-  var formKey=GlobalKey<FormState>();
-  // var nameController =TextEditingController();
-  // var emailController =TextEditingController();
-  // var phoneController =TextEditingController();
-  List<UserModel> users= [] ;
-  List<Product> products= [] ;
   @override
-  Widget build(BuildContext context,index) {
+  State<SettingScreen> createState() => _SettingScreenState();
+}
+
+class _SettingScreenState extends State<SettingScreen> {
+  var formKey=GlobalKey<FormState>();
+
+  // var nameController =TextEditingController();
+  List<UserModel> users= [] ;
+
+  List<Product> products= [] ;
+
+  @override
+  Widget build(BuildContext context) {
    return BlocProvider(create: (BuildContext context) => AppCubit(),
      child: BlocConsumer<AppCubit,AppStates >(
        listener: ( context , state ){},
@@ -347,11 +353,5 @@ class SettingScreen extends StatefulWidget
 
 
 
-  }
-
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
   }
 }
