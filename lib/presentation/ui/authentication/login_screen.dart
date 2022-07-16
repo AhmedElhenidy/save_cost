@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 40,),
                 TextFormField(
-                  controller: passwordController,
+                  controller:emailController,
                   keyboardType:TextInputType.text,
                   validator: (value){
                     if(value!.isEmpty){
