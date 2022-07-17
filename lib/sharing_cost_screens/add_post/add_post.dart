@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -22,6 +23,7 @@ class _AddTripState extends State<AddTrip> {
   var CarController = TextEditingController();
   var formKey = GlobalKey<FormState>();
   bool isClicked = false;
+  bool loading = false;
 
 
   @override
@@ -34,7 +36,7 @@ class _AddTripState extends State<AddTrip> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body:
-      ListView(
+      loading?CircularProgressIndicator():ListView(
         children:[
           Form(
             key: formKey,
@@ -292,19 +294,16 @@ class _AddTripState extends State<AddTrip> {
 
                     onPressed: () async {
                      //add post to firebase
-
-                      if (formKey.currentState!.validate()) {
-
-                        var current_user =
-                        await FirebaseAuth.instance.currentUser!;
-                         FirebaseFirestore.instance.collection('posts').doc().set({
+                      if (formKey.currentState!.validate()&&imageFile!=null) {
+                        String imageUrl = await uploadPhotoToFirebase(imageFile!);
+                        await  FirebaseFirestore.instance.collection('posts').doc().set({
                            'from': fromController.text,
                            'to': toController.text,
                            'date': dateController.text,
                              'time': timeController.text,
                              'carModel': CarController.text,
-                             'user': current_user.uid,
-
+                             'user': FirebaseAuth.instance.currentUser!.uid,
+                           'image':imageUrl
                            },
                            );
                           Navigator.pushReplacement(
@@ -315,14 +314,9 @@ class _AddTripState extends State<AddTrip> {
                                 }),
 
                           );
-                        setState(() {
-                          isClicked = true;
-
-                        });
                       }
 
                     },
-
                     // minWidth: double.infinity,
                     child: const Text('Post',
                       style: TextStyle(
@@ -359,7 +353,17 @@ class _AddTripState extends State<AddTrip> {
     }
   }
 
-
+  Future<String> uploadPhotoToFirebase(File _image,) async {
+    setState(() {
+      loading =true;
+    });
+    final storageReference = FirebaseStorage.instance
+        .ref()
+        .child('images/${_image.path}');
+    UploadTask uploadTask = storageReference.putFile(_image);
+    await uploadTask.whenComplete((){ });
+    return await storageReference.getDownloadURL();
+  }
 
 
 }

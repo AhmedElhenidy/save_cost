@@ -1,6 +1,9 @@
 
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:save_cost/domain/model/product_model.dart';
 import 'package:save_cost/presentation/components/my_driver.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -68,7 +71,7 @@ class _SearchScreenState extends State<SearchScreen> {
               //LinearProgressIndicator(),
               FutureBuilder<QuerySnapshot>(
                 future: reference.startAt([searchController.text])
-                    .endAt([searchController.text + '\uf8ff'])
+                    .endAt([searchController.text +'\uf8ff'])
                     .get(),
                 builder: (context,snapshot){
                   switch(snapshot.connectionState){
@@ -80,9 +83,10 @@ class _SearchScreenState extends State<SearchScreen> {
                       return Container();
                     case ConnectionState.done:
                       if(snapshot.hasData){
+                       List<Product> searchList =  snapshot.data!.docs.map((e) => Product.fromJson(e)).toList();
                         return  Expanded(
                           child: ListView.separated(
-                            itemBuilder: (context,index)=>BuildSearchItem(),
+                            itemBuilder: (context,index)=>BuildSearchItem(product: searchList[index]),
                             separatorBuilder:(context,index)=>myDivider() ,
                             itemCount: snapshot.data!.docs.length,
                           ),
@@ -103,6 +107,7 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget BuildSearchItem ({
+    required Product product,
     bool isOldPrice =false ,
   })  => Padding(
     padding: const EdgeInsets.all(20.0),
@@ -115,7 +120,7 @@ class _SearchScreenState extends State<SearchScreen> {
             alignment: AlignmentDirectional.bottomStart,
             children: [
               Image(
-                image: AssetImage('assets/images/product2.jpg'),
+                image: NetworkImage(product.image??""),
                 width: 120,
                 height: 120,
                 // fit: BoxFit.cover,
@@ -144,7 +149,7 @@ class _SearchScreenState extends State<SearchScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Stitch Detail Double Handle Square Bag',
+                  product.name??"",
                   style: TextStyle(
                     fontSize: 14,
                     height: 1.3,
@@ -157,7 +162,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   children: [
                     // NEW PRICE
                     Text(
-                      'EGP 250',
+                      'EGP ${product.price}',
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.purple,
@@ -179,26 +184,26 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
 
                       ),
-                    Spacer(),
-                    IconButton(
-                      onPressed: ()
-                      {
-                        print('ok');
-                      },
-                      icon: CircleAvatar(
-                        radius: 15.0,
-                        backgroundColor:true? Colors.grey:Colors.grey,
-                        child: Icon(
-                          Icons.favorite,
-                          size: 20.0,
-                          color: Colors.white,
-                        ),
-                      ),
-
-
-                    ),
+                    // IconButton(
+                    //   onPressed: ()
+                    //   {
+                    //     print('ok');
+                    //   },
+                    //   icon: CircleAvatar(
+                    //     radius: 15.0,
+                    //     backgroundColor:true? Colors.grey:Colors.grey,
+                    //     child: Icon(
+                    //       Icons.favorite,
+                    //       size: 20.0,
+                    //       color: Colors.white,
+                    //     ),
+                    //   ),
+                    //
+                    //
+                    // ),
                   ],
                 ),
+                Spacer(),
 
               ],
             ),
