@@ -30,46 +30,44 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
+        elevation: 4,
           title: const Text(
             'Register now',
           ),
 
 
       ),
-
       body:  Center(
+
         child: Padding(
 
           padding: const EdgeInsets.all(20.0),
-
           child: SingleChildScrollView(
-
             child: Form(
               key: formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 20,
-                  ),
+
                   Text(
                     'Register now and discover app',
                     style:TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.w900,
-                      color: Colors.grey[600],
+                      color: Colors.grey[500],
 
                     ),
                   ),
                   SizedBox(
-                    height: 20.0,
+                    height: 40.0,
                   ),
                   defaultFormField(
+                    Color: Theme.of(context).textTheme.bodyText1?.color,
                     controller: usernameController,
-                    label: 'userName',
+                   label: 'userName',
                     prefix: Icons.person_sharp,
+
                     type: TextInputType.name,
                     validate: (value){
                       if (value!.isEmpty){
@@ -84,6 +82,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
 
                   defaultFormField(
+                    Color: Theme.of(context).textTheme.bodyText1?.color,
                     controller: emailController,
                     label: 'Email Address',
                     prefix: Icons.email,
@@ -113,15 +112,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       //   horizontal: 20.0,
                       // ),
                       border: OutlineInputBorder(),
-                      label: const Text(
+                      label:  Text(
                         'Password',
+                        style: TextStyle(
+                          color: Theme.of(context).textTheme.bodyText1?.color,
+                        ),
                       ),
                       prefixIcon: (
-                          const Icon(
+                           Icon(
                             Icons.lock,
+                            color: Theme.of(context).iconTheme.color,
                           )
                       ),
                       suffixIcon: IconButton(
+                        color: Theme.of(context).iconTheme.color,
                         onPressed: () {
                           setState(() {
                             isPassword = !isPassword;
@@ -156,15 +160,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   //   horizontal: 20.0,
                   // ),
                   border: OutlineInputBorder(),
-                  label: const Text(
+                  label:  Text(
                     'Confirm Password',
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyText1?.color,
+                    ),
                   ),
                   prefixIcon: (
-                   const Icon(
+                    Icon(
                       Icons.lock,
+                     color: Theme.of(context).iconTheme.color,
                     )
                   ),
                   suffixIcon: IconButton(
+                    color: Theme.of(context).iconTheme.color,
                     onPressed: () {
                       setState(() {
                         isVisible = !isVisible;
@@ -202,8 +211,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                     decoration: InputDecoration(
                       labelText: 'Number',
+                      labelStyle: TextStyle(
+                        color: Theme.of(context).textTheme.bodyText1?.color,
+                       ),
                       prefixIcon: Icon(
                         Icons.add_call,
+                        color: Theme.of(context).iconTheme.color,
                       ),
 
                       border: OutlineInputBorder(),
@@ -220,7 +233,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Container(
-                        color: Colors.teal,
+                        color: Colors.purple,
                         //width: 90,
                         height: 45,
 
@@ -262,9 +275,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             'Register',
                             style: TextStyle(
                               fontSize: 18.0,
-                              backgroundColor: Colors.teal,
-
-
                               color: Colors.white,
                             ),
                           ),),

@@ -1,12 +1,11 @@
 
 import 'package:flutter/material.dart';
-import 'package:save_cost/sharing_cost_screens/add_post.dart';
-import 'package:save_cost/sharing_cost_screens/checked.dart';
-import 'package:save_cost/sharing_cost_screens/home.dart';
-import 'package:save_cost/sharing_cost_screens/profile.dart';
+import 'package:save_cost/domain/model/user_model.dart';
+import 'package:save_cost/sharing_cost_screens/add_post/add_post.dart';
+import 'package:save_cost/sharing_cost_screens/home_page/home.dart';
+import 'package:save_cost/sharing_cost_screens/profile/profile.dart';
 
 
-import 'trip_result_screen.dart';
 
 
 class SharingCost extends StatefulWidget {
@@ -18,17 +17,19 @@ class SharingCost extends StatefulWidget {
 
 class _SharingCostState extends State<SharingCost> {
   @override
+  List<UserModel> users= [] ;
 var titleController = TextEditingController();
 var timeController = TextEditingController();
 
 var dateController = TextEditingController();
 int _currentIndex =0;
-List<Widget> _widgetOptions = <Widget>[
+final List<Widget> _widgetOptions = <Widget>[
   TripsHome(),
-  ChekedTrip(),
+  // ChekedTrip(),
   AddTrip(),
 
   Profile(),
+
 ];
 
   Widget build(BuildContext context) {
@@ -167,7 +168,7 @@ List<Widget> _widgetOptions = <Widget>[
     bottomNavigationBar:BottomNavigationBar(
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home',),
-        BottomNavigationBarItem(icon: Icon(Icons.check_circle_outline),label: 'checked',),
+        //BottomNavigationBarItem(icon: Icon(Icons.check_circle_outline),label: 'checked',),
         BottomNavigationBarItem(icon: Icon(Icons.add),label: 'add post',),
         BottomNavigationBarItem(icon: Icon(Icons.emoji_people),label: 'profile',),
 

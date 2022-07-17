@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:save_cost/sharing_cost_screens/profile/editing_profile_page.dart';
 
 class ProfileWidget extends StatelessWidget {
   final String imagePath;
@@ -28,21 +29,28 @@ class ProfileWidget extends StatelessWidget {
             Positioned(
               bottom: 0,
                 right: 4,
-                child: buildEditingIcon(color)),
+                child: InkWell(
+                  onTap: (){
+                    Navigator.push(context,MaterialPageRoute(builder:(builder)=> EditingProfilePage())
+                        );
+                  },
+                    child: buildEditingIcon(color))
+            ),
           ],
       ),
     );
   }
     Widget buildImage(){
       final image = NetworkImage(imagePath);
-      return ClipOval(
+      return ClipOval
+        (
         child: Material(
           color: Colors.transparent,
           child: Ink.image(
             image:image ,
             fit: BoxFit.cover,
-            width: 128,
-            height: 128,
+            width: 150,
+            height: 150,
             child: InkWell(onTap: onClicked,),
 
           ),
@@ -77,10 +85,7 @@ Widget buildCircle({
     padding: EdgeInsets.all(all),
   
     color: color,
-  
-  
-  
-    child:child ,
+   child:child ,
   
   ),
 );

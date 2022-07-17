@@ -3,11 +3,10 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:save_cost/domain/model/product_model.dart';
-import 'package:save_cost/presentation/ui/product_details_screen.dart';
-import 'package:save_cost/shop_app/categories/categories_screen.dart';
-import 'package:save_cost/shop_app/favorites/favorites_screen.dart';
-import 'package:save_cost/shop_app/products/products_screen.dart';
-import 'package:save_cost/shop_app/settings/settings_screen.dart';
+import 'package:save_cost/presentation/ui/shop_app/categories/categories_screen.dart';
+import 'package:save_cost/presentation/ui/shop_app/favorites/favorites_screen.dart';
+import 'package:save_cost/presentation/ui/shop_app/products/products_screen.dart';
+import 'package:save_cost/presentation/ui/shop_app/settings/settings_screen.dart';
 
 class ShoppingScreen extends StatefulWidget {
   const ShoppingScreen({Key? key}) : super(key: key);
@@ -28,7 +27,9 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+
       body:
       _WidgetOption.elementAt(currentIndex)
       // FutureBuilder<QuerySnapshot>(
@@ -95,6 +96,9 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
         ],) ,
     );
   }
+
+
+
   void changeItem (int value)
   {
     setState(()

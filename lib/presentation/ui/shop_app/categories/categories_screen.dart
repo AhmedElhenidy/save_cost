@@ -4,9 +4,9 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:save_cost/domain/model/category_model.dart';
-import 'package:save_cost/presentation/components/my_driver.dart';
-import 'package:save_cost/shop_app/products/all_products_screen.dart';
-import 'package:save_cost/shop_app/search/search_screen.dart';
+import 'package:save_cost/presentation/ui/shop_app/products/all_products_screen.dart';
+import 'package:save_cost/presentation/ui/shop_app/search/search_screen.dart';
+
 
 
 class CategoriesScreen extends StatelessWidget {
@@ -15,6 +15,7 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 4,
         title: Text('Categories'),
         actions: [
           IconButton(
@@ -56,7 +57,8 @@ class CategoriesScreen extends StatelessWidget {
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (ctx)=>AllProductsScreen(categories[index].id??"1")));
                     },
-                    child: Row(
+                    child: Row
+                      (
                       children:
                       [
                         Image(
@@ -70,14 +72,14 @@ class CategoriesScreen extends StatelessWidget {
                         ),
                         Text(
                           '${categories[index].name}',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context).textTheme.bodyText1,
                         ),
                         Spacer(),
                         Icon(
                           Icons.arrow_forward_ios,
+                          color: Theme.of(context).iconTheme.color,
+
+
                         ),
                       ],
                     ),

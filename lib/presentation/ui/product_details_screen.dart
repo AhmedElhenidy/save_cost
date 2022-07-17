@@ -1,12 +1,18 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:save_cost/domain/model/product_model.dart';
-import 'package:save_cost/shop_app/search/search_screen.dart';
+import 'package:save_cost/domain/sqflite_services/favourites_service.dart';
+import 'package:save_cost/presentation/ui/shop_app/search/search_screen.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
  final Product myProduct;
+ List<Product> products= [] ;
 
    ProductDetailsScreen(this.myProduct,{Key? key}) : super(key: key);
+
 
 
   @override
@@ -19,6 +25,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 4,
         title: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -96,24 +103,51 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text (
-                      widget.myProduct.name! + '\t  -  '+widget.myProduct.color!,
+                      widget.myProduct.name! + '\n'
+                          ''+widget.myProduct.color!,
                     style: TextStyle(
                       fontSize: 15,
 
                     ),
                   ),
                   IconButton(
-                    onPressed: ()
+                    onPressed: () async
                     {
+                      if( widget.myProduct.isFavourite == true){
+                        var result = await FavouriteServices().deleteProductFromFavourites(widget.myProduct.name!);
+                        if(result != 0){
+                          log(result.toString(),name: "FromIcon Button delete");
+                          setState((){
+                            widget.myProduct.isFavourite = false;
+                          });
+                        }
+                        else{
+                          log(result.toString(),name: "FromIcon Button else");
+                        }
+                      }
+                      else{
+                        var result = await FavouriteServices().addToFavourite(widget.myProduct);
+                        if(result != 0){
+                          log(result.toString(),name: "FromIcon Button");
+                          setState((){
+                            widget.myProduct.isFavourite = true;
+                          });
+                        }
+                        else{
+                          log(result.toString(),name: "FromIcon Button else");
+                        }
+                      }
                       print('ok');
+                      print(widget.myProduct.fillColor!);
+
                     },
                     icon: CircleAvatar(
                       radius: 15.0,
                       backgroundColor: Colors.grey,
                       child: Icon(
-                        Icons.favorite_border,
+                        Icons.favorite,
                         size: 20.0,
-                        color: Colors.white,
+                        color: widget.myProduct.isFavourite?Colors.purple:Colors.white,
                       ),
                     ),
                   ),
@@ -126,9 +160,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               Row(
                 children: [
                   Column(
+
                     children: [
                       Text(
-                        'Color',
+                        'Color  ',
                       ),
                       Container(
 
@@ -139,12 +174,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           shape: BoxShape.circle,
                           border: Border.all(
 
-                              color: Color(0xFF356C95)),
+                             color: Color(0xFF356C95)),
                         ),
                         child:
                         DecoratedBox(
                           decoration: BoxDecoration(
-                            //color: widget.myProduct.color! ,
+                           // color:widget.myProduct.fillColor! ,
+                            //color: Colors.black,
+                            color:HexColor(widget.myProduct.fillColor!),
+                              //double.parse(widget.myProduct.fillColor!),
+                            //widget.myProduct?.fillColor ,
                             shape: BoxShape.circle,
                           ),
                         ),
@@ -166,6 +205,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                      fontSize: 13,
                     ),
                   ),
+
                   Text(
                     widget.myProduct.seller!,
                     style: TextStyle(
@@ -193,7 +233,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
                   if(widget.myProduct.discount !="0")
                      Row(
-                      children: [
+                      children:
+                      [
                         Text(
                           '\tEGP ' + widget.myProduct.price!.toString(),
                           style: TextStyle(

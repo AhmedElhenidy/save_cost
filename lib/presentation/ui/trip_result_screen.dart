@@ -41,12 +41,6 @@ class _TripResultState extends State<TripResult> {
           ),
 
 
-
-
-
-
-
-
         ],
       ),
     );
