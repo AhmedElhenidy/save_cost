@@ -27,7 +27,9 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+
       body:
       _WidgetOption.elementAt(currentIndex)
       // FutureBuilder<QuerySnapshot>(
@@ -94,6 +96,9 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
         ],) ,
     );
   }
+
+
+
   void changeItem (int value)
   {
     setState(()

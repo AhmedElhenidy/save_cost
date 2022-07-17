@@ -137,7 +137,7 @@ class ChooseScreen extends StatelessWidget {
                          ),
                          width: double.infinity,
                          child: Text(
-                           'Save Cost',
+                           'Carpooling',
                            textAlign: TextAlign.center,
                            style: TextStyle(
                              fontSize: 20,
