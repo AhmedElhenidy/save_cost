@@ -179,7 +179,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-            themeMode:AppCubit.get(context).isDark ? ThemeMode.light : ThemeMode.dark,
+            themeMode:state is DarkModeState ? ThemeMode.dark : ThemeMode.dark,
             //theme:themeModel.isDarkMode? ThemeData.dark():ThemeData.light(),
 
             home:

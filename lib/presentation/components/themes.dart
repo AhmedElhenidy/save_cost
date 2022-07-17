@@ -9,7 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AppStates {}
 class AppInitialState extends AppStates{}
-class AppChangeModeState extends AppStates {}
+class DarkModeState extends AppStates {}
+class LightState extends AppStates {}
 
 
 //cubit
@@ -24,7 +25,12 @@ class AppCubit extends Cubit <AppStates>
   void changeAppMode ()
   {
      isDark =! isDark;
-     emit(AppChangeModeState());
+     if(isDark){
+       emit(DarkModeState());
+     }else{
+       emit(LightState());
+     }
+
    //
     //CacheHelper.putBoolean(key: "isDark", value: isDark).then((value){
 
