@@ -1,11 +1,21 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:save_cost/presentation/components/my_driver.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
 
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
   var formKey=GlobalKey<FormState>();
+
   var searchController = TextEditingController();
+
+  final reference =  FirebaseFirestore.instance.collection('shopping').orderBy('name');
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,19 +28,11 @@ class SearchScreen extends StatelessWidget {
           child: Column(
             children:
             [
-              TextFormField(
+              TextField(
                 controller: searchController,
                 keyboardType: TextInputType.text,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Enter Text to search';
-                  }
-
-                  return null;
-                },
-                onFieldSubmitted: (String text)
-                {
-
+                onChanged: (value){
+                  setState((){});
                 },
                 decoration: InputDecoration(
                   isDense: false,
@@ -63,14 +65,36 @@ class SearchScreen extends StatelessWidget {
                 height: 10.0,
               ),
               //if(state is searchLoadingState)
-              LinearProgressIndicator(),
-              Expanded(
-                child: ListView.separated(
-                  itemBuilder: (context,index)=>BuildSearchItem(),
-                  separatorBuilder:(context,index)=>myDivider() ,
-                  itemCount: 5,
-                ),
+              //LinearProgressIndicator(),
+              FutureBuilder<QuerySnapshot>(
+                future: reference.startAt([searchController.text])
+                    .endAt([searchController.text + '\uf8ff'])
+                    .get(),
+                builder: (context,snapshot){
+                  switch(snapshot.connectionState){
+                    case ConnectionState.none:
+                     return Container();
+                    case ConnectionState.waiting:
+                      return LinearProgressIndicator();
+                    case ConnectionState.active:
+                      return Container();
+                    case ConnectionState.done:
+                      if(snapshot.hasData){
+                        return  Expanded(
+                          child: ListView.separated(
+                            itemBuilder: (context,index)=>BuildSearchItem(),
+                            separatorBuilder:(context,index)=>myDivider() ,
+                            itemCount: snapshot.data!.docs.length,
+                          ),
+                        );
+                      }else{
+                        return Text("No data found");
+                      }
+
+                  }
+                },
               ),
+
             ],
           ),
         ),
