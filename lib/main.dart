@@ -179,7 +179,8 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-            themeMode:state is DarkModeState ? ThemeMode.dark : ThemeMode.dark,
+
+            themeMode:state is DarkModeState ? ThemeMode.dark : ThemeMode.light,
             //theme:themeModel.isDarkMode? ThemeData.dark():ThemeData.light(),
 
             home:
