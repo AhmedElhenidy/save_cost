@@ -359,7 +359,7 @@ class _AddTripState extends State<AddTrip> {
     });
     final storageReference = FirebaseStorage.instance
         .ref()
-        .child('images/${_image.path}');
+        .child('images/');
     UploadTask uploadTask = storageReference.putFile(_image);
     await uploadTask.whenComplete((){ });
     return await storageReference.getDownloadURL();

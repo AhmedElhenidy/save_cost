@@ -6,7 +6,7 @@ class Post {
     this.carModel,
     this.date,
     this.time,
-    this.user,
+    this.user,this.image
    });
 
   Post.fromJson(dynamic json) {
@@ -16,6 +16,7 @@ class Post {
     date = json['date'];
     time = json['time'];
     user = json['user'];
+    image = json['image'];
 
   }
 
@@ -25,6 +26,7 @@ class Post {
   String? date;
   String? time;
   String? user;
+  String? image;
   Map<String, dynamic> toJson()
   {
     final map = <String, dynamic>{};

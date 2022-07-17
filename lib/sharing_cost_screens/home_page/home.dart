@@ -223,9 +223,7 @@ class _TripsHomeState extends State<TripsHome> {
                                 Container(
                                  // height: 200,
                                  // width: 200,
-                                  child: Image(
-                                    image: NetworkImage(
-                                        'https://imgd.aeplcdn.com/1056x594/n/cw/ec/27074/civic-exterior-right-front-three-quarter-148156.jpeg?q=75&wm=1'),),
+                                  child: Image.network( posts[index].image??""),
                                 )
                               ],
                             ),
