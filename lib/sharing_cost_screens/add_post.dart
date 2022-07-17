@@ -164,7 +164,13 @@ class _AddTripState extends State<AddTrip> {
                 child: MaterialButton(
 
                   onPressed: () async {
-
+                   await FirebaseFirestore.instance.collection('posts').doc().set({
+                      'place': titleController.text,
+                      'date': dateController.text,
+                      'time': timeController.text,
+                      'car_model': CarController.text,
+                      'user': FirebaseAuth.instance.currentUser!.uid,
+                    });
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
@@ -175,15 +181,7 @@ class _AddTripState extends State<AddTrip> {
                     );
                     //add post to firebase
 
-                    var current_user =
-                        await FirebaseAuth.instance.currentUser!;
-                    FirebaseFirestore.instance.collection('posts').doc().set({
-                      'place': titleController.text,
-                      'date': dateController.text,
-                      'time': timeController.text,
-                      'car model': CarController.text,
-                      'user': 'users/' + current_user.uid,
-                    });
+
                   },
                   // minWidth: double.infinity,
                   child: const Text('Post',
