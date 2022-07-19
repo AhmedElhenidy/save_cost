@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:save_cost/domain/model/product_model.dart';
 import 'package:save_cost/presentation/components/my_driver.dart';
+import 'package:save_cost/presentation/ui/product_details_screen.dart';
 
 class SearchScreen extends StatefulWidget {
 
@@ -18,7 +19,7 @@ class _SearchScreenState extends State<SearchScreen> {
   var searchController = TextEditingController();
 
   final reference =  FirebaseFirestore.instance.collection('shopping').orderBy('name');
-
+  List<Product> products= [] ;
 
   @override
   Widget build(BuildContext context) {
@@ -80,18 +81,24 @@ class _SearchScreenState extends State<SearchScreen> {
                     case ConnectionState.waiting:
                       return LinearProgressIndicator();
                     case ConnectionState.active:
-                      return Container();
+                      return Container(
+                      );
                     case ConnectionState.done:
                       if(snapshot.hasData){
                        List<Product> searchList =  snapshot.data!.docs.map((e) => Product.fromJson(e)).toList();
                         return  Expanded(
                           child: ListView.separated(
-                            itemBuilder: (context,index)=>BuildSearchItem(product: searchList[index]),
+                            itemBuilder: (context,index)=>InkWell(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ProductDetailsScreen(searchList[index])));
+                              },
+                                child: BuildSearchItem(product: searchList[index])),
                             separatorBuilder:(context,index)=>myDivider() ,
                             itemCount: snapshot.data!.docs.length,
                           ),
                         );
-                      }else{
+                      }else
+                      {
                         return Text("No data found");
                       }
 

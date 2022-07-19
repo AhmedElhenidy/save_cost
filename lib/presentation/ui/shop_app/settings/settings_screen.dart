@@ -156,74 +156,80 @@ class _SettingScreenState extends State<SettingScreen> {
                    //   // obscureText: isPassword,
                    //
                    // ),
-                   SizedBox(
-                     height: 20,
-                   ),
-                   Row(
-                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                     children: [
-                       Text('Discount',
-                         style: Theme.of(context).textTheme.bodyText1,
-                       ),
-                       Switcher(
-
-                         value: true,
-                         size: SwitcherSize.medium,
-                         switcherButtonRadius: 50,
-                         enabledSwitcherButtonRotate: true,
-                         iconOff:Icons.circle,
-                         iconOn: Icons.circle_outlined,
-                         colorOff: Colors.blueGrey.withOpacity(0.3),
-                         colorOn: Colors.purple,
-
-                         onChanged: (bool state) {
-                         },
-                       ),
-                       // SwitcherButton(
-                       //   onColor: Colors.green,
-                       //   offColor: Colors.grey,
-                       //   value: true,
-                       //   onChange: (value) {
-                       //     print(value);
-                       //   },
-                       // ),
-                     ],
-                   ),
-                   SizedBox(
-                     height: 20,
-                   ),
+                   // SizedBox(
+                   //   height: 20,
+                   // ),
+                   // Row(
+                   //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                   //   children: [
+                   //     // Text('Discount',
+                   //     //   style: Theme.of(context).textTheme.bodyText1,
+                   //     // ),
+                   //     // Switcher(
+                   //     //
+                   //     //   value: true,
+                   //     //   size: SwitcherSize.medium,
+                   //     //   switcherButtonRadius: 50,
+                   //     //   enabledSwitcherButtonRotate: true,
+                   //     //   iconOff:Icons.circle,
+                   //     //   iconOn: Icons.circle_outlined,
+                   //     //   colorOff: Colors.blueGrey.withOpacity(0.3),
+                   //     //   colorOn: Colors.purple,
+                   //     //
+                   //     //   onChanged: (bool state) {
+                   //     //   },
+                   //     // ),
+                   //     // SwitcherButton(
+                   //     //   onColor: Colors.green,
+                   //     //   offColor: Colors.grey,
+                   //     //   value: true,
+                   //     //   onChange: (value) {
+                   //     //     print(value);
+                   //     //   },
+                   //     // ),
+                   //   ],
+                   // ),
+                   // SizedBox(
+                   //   height: 20,
+                   // ),
                    Row(
                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                      children: [
                        Text('Dark Mode',
                          style: Theme.of(context).textTheme.bodyText1,
                        ),
-
+                       IconButton(
+                         onPressed: (){
+                           AppCubit.get(context).changeAppMode();
+                         },
+                         icon:Icon(
+                           Icons.brightness_4_outlined,
+                         ) ,),
                        // IconButton(onPressed: (){
                        //   AppCubit.get(context).changeAppMode();
                        // },
                        //     icon: Icon(
                        //       Icons.brightness_4_outlined,
                        //     ) ,)
-                       Switcher(
-                         value:AppCubit.get(context).isDark,
-                         //themeNotifier.isDarkMode? false :true,
-                         size: SwitcherSize.medium,
-                         switcherButtonRadius: 50,
-                         enabledSwitcherButtonRotate: true,
-                         iconOff:Icons.circle,
-                         iconOn: Icons.dark_mode,
-                         colorOff: Colors.blueGrey.withOpacity(0.3),
-                         colorOn: Colors.purple,
-
-                         onChanged: (bool state)
-                         {
-                           AppCubit.get(context).changeAppMode();
-                           // themeNotifier.isDarkMode
-                           //     ? themeNotifier.isDarkMode=false
-                           //     :themeNotifier.isDarkMode=true;
-                         },
-                       ),
+                       // Switcher(
+                       //   value:AppCubit.get(context).isDark? false : true,
+                       //   //themeNotifier.isDarkMode? false :true,
+                       //   size: SwitcherSize.medium,
+                       //   switcherButtonRadius: 50,
+                       //   enabledSwitcherButtonRotate: true,
+                       //   iconOff:Icons.circle,
+                       //   iconOn: Icons.dark_mode,
+                       //   colorOff: Colors.blueGrey.withOpacity(0.3),
+                       //   colorOn: Colors.purple,
+                       //
+                       //   onChanged: (bool state)
+                       //   {
+                       //     AppCubit.get(context).changeAppMode();
+                       //     // themeNotifier.isDarkMode
+                       //     //     ? themeNotifier.isDarkMode=false
+                       //     //     :themeNotifier.isDarkMode=true;
+                       //   },
+                       // ),
                      ],
                    ),
 

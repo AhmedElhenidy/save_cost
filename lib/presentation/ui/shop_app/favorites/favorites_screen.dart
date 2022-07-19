@@ -70,15 +70,15 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       const Center(child: CircularProgressIndicator(),)
           :
       ListView.separated(
-        itemBuilder: (context,index){
+        itemBuilder: (BuildContext context,int index){
            return InkWell(
             onTap: (){
              // Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ProductDetailsScreen(products[index])));
-              //Navigator.push(context, MaterialPageRoute(builder: (builder)=>ProductDetailsScreen(products[index])));
+             // Navigator.push(context, MaterialPageRoute(builder: (builder)=>ProductDetailsScreen(products[index])));
             },
             child: BuildFavItem(product: products[index]));
         },
-            separatorBuilder:(context,index)=> myDivider(),
+            separatorBuilder:(BuildContext context,int index)=> myDivider(),
             itemCount: products.length,
       ),
     );
@@ -87,8 +87,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   Widget BuildFavItem({
     required Product product,
     bool isOldPrice = true,
-
-
   })  =>
       Padding(
         padding: const EdgeInsets.all(20.0),

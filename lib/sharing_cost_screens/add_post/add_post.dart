@@ -36,7 +36,7 @@ class _AddTripState extends State<AddTrip> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body:
-      loading?CircularProgressIndicator():ListView(
+      loading?Center(child: CircularProgressIndicator()):ListView(
         children:[
           Form(
             key: formKey,
@@ -359,7 +359,7 @@ class _AddTripState extends State<AddTrip> {
     });
     final storageReference = FirebaseStorage.instance
         .ref()
-        .child('images/');
+        .child('images/${_image.path}');
     UploadTask uploadTask = storageReference.putFile(_image);
     await uploadTask.whenComplete((){ });
     return await storageReference.getDownloadURL();

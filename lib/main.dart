@@ -84,6 +84,9 @@ class MyApp extends StatelessWidget {
                 backgroundColor: Colors.white ,
               ),
               textTheme: TextTheme(
+                headline1: TextStyle(
+                  color: Colors.purple,
+                ),
                 subtitle2: TextStyle(
 
                   fontStyle:FontStyle.italic,
@@ -151,6 +154,9 @@ class MyApp extends StatelessWidget {
                 backgroundColor: HexColor('333739') ,
               ),
               textTheme: TextTheme(
+                headline1: TextStyle(
+                  color: Colors.purple[200],
+                ),
                 subtitle2: TextStyle(
 
                   fontStyle:FontStyle.italic,
@@ -179,8 +185,8 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-
-            themeMode:state is DarkModeState ? ThemeMode.dark : ThemeMode.light,
+            themeMode: AppCubit.get(context).isDark ? ThemeMode.light :ThemeMode.dark,
+            //themeMode:state is DarkModeState ? ThemeMode.dark : ThemeMode.light,
             //theme:themeModel.isDarkMode? ThemeData.dark():ThemeData.light(),
 
             home:

@@ -69,19 +69,20 @@ class _TripsHomeState extends State<TripsHome> {
                               ),
 
                             ),
-                            title:Container(margin: EdgeInsets.only(top: 10),
-                              child: Text('Name',
+                            title:Container(margin: EdgeInsets.only(top: 0),
+                              child:
+                              Text('Name',
                                 style: Theme.of(context).textTheme.bodyText1,
                               ),) ,
-                            subtitle: Text(
-                              'Email Address ',
-                              style: Theme.of(context).textTheme.subtitle1,
-                            ),
-                            trailing: MaterialButton(
+                            // subtitle: Text(
+                            //   ' ',
+                            //   style: Theme.of(context).textTheme.subtitle1,
+                            // ),
+                            trailing: InkWell(
 
                               child: Icon(Icons.more_vert,),
 
-                              onPressed: ()
+                              onTap: ()
                               {
                                 showDialog<String>(
                                   context:context,
@@ -136,6 +137,9 @@ class _TripsHomeState extends State<TripsHome> {
 
                             ),
                           ),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Padding(
                             padding: const EdgeInsetsDirectional.only(
                               start: 25,
@@ -149,6 +153,7 @@ class _TripsHomeState extends State<TripsHome> {
                                     Text('From: ',
                                       style: TextStyle(fontSize: 20,
                                         fontStyle:FontStyle.italic,
+                                        color:Theme.of(context).textTheme.headline1?.color,
                                       ),
                                     ),
                                     Text('${posts[index].from}',
@@ -164,6 +169,7 @@ class _TripsHomeState extends State<TripsHome> {
                                     Text('To: ',
                                       style: TextStyle(fontSize: 20,
                                         fontStyle:FontStyle.italic,
+                                        color:Theme.of(context).textTheme.headline1?.color,
                                       ),
                                     ),
                                     Text('${posts[index].to}',
@@ -179,6 +185,7 @@ class _TripsHomeState extends State<TripsHome> {
                                     Text('Date:  ',
                                       style: TextStyle(fontSize: 20,
                                         fontStyle:FontStyle.italic,
+                                        color:Theme.of(context).textTheme.headline1?.color,
                                       ),
                                     ),
                                     Text('${posts[index].date}',
@@ -194,6 +201,7 @@ class _TripsHomeState extends State<TripsHome> {
                                     Text('Time: ',
                                       style: TextStyle(fontSize: 20,
                                         fontStyle:FontStyle.italic,
+                                        color:Theme.of(context).textTheme.headline1?.color,
                                       ),
                                     ),
                                     Text('${posts[index].time}',
@@ -209,6 +217,7 @@ class _TripsHomeState extends State<TripsHome> {
                                     Text('Car Model: ',
                                       style: TextStyle(fontSize: 20,
                                         fontStyle:FontStyle.italic,
+                                        color:Theme.of(context).textTheme.headline1?.color,
                                       ),
                                     ),
                                     Text('${posts[index].carModel}',
@@ -257,8 +266,8 @@ class _TripsHomeState extends State<TripsHome> {
                                         context:context,
                                         builder: (BuildContext context) => AlertDialog(
                                           title: const Text('If you want to join my trip, that is my '
-                                              'Phone Number'),
-                                          content: const Text('01061960884',
+                                              'Email address '),
+                                          content: const Text('ahmed@ahmed.com',
                                             style: TextStyle(fontSize: 16,
                                               color: Colors.purple,
                                             ),),
