@@ -95,7 +95,7 @@ class _EditingProfilePageState extends State<EditingProfilePage> {
 
              );
            },
-           text: "Logout",
+           text: "Update",
            radius: 20,
            width: 120,
          ),
