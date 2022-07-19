@@ -80,6 +80,7 @@ class Product {
     map['productDescription'] = description;
     map['productSize'] = size;
     map['productColor'] = color;
+    map['productFillColor'] = fillColor;
     map['productImage'] = image;
     map['productRate'] = rate;
     map['productSearchTimes'] = searchTimes;
@@ -104,6 +105,7 @@ class Product {
     sellTimes = int.tryParse(json['productSellTimes'])??0;
     seller = json['productSeller'];
     discount = json['productDiscount'];
+    fillColor = json['productFillColor'];
   }
 
 }

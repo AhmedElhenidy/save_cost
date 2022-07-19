@@ -20,6 +20,7 @@ State<TripsHome> createState() => _TripsHomeState();
 class _TripsHomeState extends State<TripsHome> {
   List<Post> posts= [] ;
   List<UserModel> users = [] ;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +31,7 @@ class _TripsHomeState extends State<TripsHome> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body:FutureBuilder<QuerySnapshot>(
-        future: FirebaseFirestore.instance.collection("posts").get(),
+        future:FirebaseFirestore.instance.collection("posts").get(),
 
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           switch(snapshot.connectionState)

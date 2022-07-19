@@ -73,7 +73,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         itemBuilder: (BuildContext context,int index){
            return InkWell(
             onTap: (){
-             // Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ProductDetailsScreen(products[index])));
+             Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ProductDetailsScreen(products[index])));
              // Navigator.push(context, MaterialPageRoute(builder: (builder)=>ProductDetailsScreen(products[index])));
             },
             child: BuildFavItem(product: products[index]));

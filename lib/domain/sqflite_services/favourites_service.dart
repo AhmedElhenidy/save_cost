@@ -19,6 +19,7 @@ class FavouriteServices{
   final String columnProductSellTimes='productSellTimes';
   final String columnProductSeller='productSeller';
   final String columnProductDiscount='productDiscount';
+  final String columnProductFillColor='productFillColor';
   static Database? _db;
 
   Future<int> addToFavourite(Product myProduct)async{
@@ -33,7 +34,7 @@ class FavouriteServices{
         columns: [columnId,columnProductName,columnProductPrice,
           columnProductAddress,columnProductDescription,columnProductSize,
           columnProductColor,columnProductImage,columnProductRate,columnProductSearchTimes,
-          columnProductQuantity,columnProductSellTimes,columnProductSeller,columnProductDiscount]
+          columnProductQuantity,columnProductSellTimes,columnProductSeller,columnProductDiscount,columnProductFillColor]
     );
     favouritesList.forEach((element) {    // {}
       products.add(Product.fromDb(element));
@@ -76,6 +77,7 @@ class FavouriteServices{
         '$columnProductQuantity text,'
         '$columnProductSellTimes text,'
         '$columnProductDiscount text,'
+        '$columnProductFillColor text,'
         '$columnProductSeller text)';
     await db.execute(sql);
   }

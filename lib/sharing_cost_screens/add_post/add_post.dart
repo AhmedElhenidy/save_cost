@@ -303,7 +303,8 @@ class _AddTripState extends State<AddTrip> {
                              'time': timeController.text,
                              'carModel': CarController.text,
                              'user': FirebaseAuth.instance.currentUser!.uid,
-                           'image':imageUrl
+                           'image':imageUrl,
+                          "userName":""
                            },
                            );
                           Navigator.pushReplacement(
