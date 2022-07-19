@@ -1,6 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class NumbersWidget extends StatelessWidget{
+class NumbersWidget extends StatefulWidget{
+  @override
+  State<NumbersWidget> createState() => _NumbersWidgetState();
+}
+
+class _NumbersWidgetState extends State<NumbersWidget> {
+   QuerySnapshot? posts;
+  @override
+  initState(){
+    super.initState();
+    FirebaseFirestore.instance.collection("posts").
+   where("user",isEqualTo: FirebaseAuth.instance.currentUser?.uid).get().then((value){
+     posts = value;
+     setState((){});
+   });
+
+  }
   @override
   Widget build(BuildContext context)=>IntrinsicHeight(
 
@@ -12,7 +30,7 @@ class NumbersWidget extends StatelessWidget{
         buildDivider(),
         buildButton(context, '3','Followers'),
         buildDivider(),
-        buildButton(context, '5','Posts'),
+        buildButton(context, posts==null?"55":posts!.docs.length.toString(),'Posts'),
 
       ],
     ),

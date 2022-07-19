@@ -1,20 +1,23 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:save_cost/domain/model/user_model.dart';
 import 'package:save_cost/presentation/components/default_button.dart';
-import 'package:save_cost/presentation/components/profile/profile_widget.dart';
-import 'package:save_cost/sharing_cost_screens/profile/profile.dart';
 import '../../presentation/components/editing_profile/textfield_widget.dart';
 
 class EditingProfilePage extends StatefulWidget {
+  UserModel user;
+  EditingProfilePage(this.user);
   @override
   State<EditingProfilePage> createState() => _EditingProfilePageState();
 }
 
 class _EditingProfilePageState extends State<EditingProfilePage> {
-  XFile ? imageFile ;
-  User user = UserPreferences.myUser;
+  File ? imageFile ;
   @override
   Widget build(BuildContext context) {
    return Scaffold(
@@ -25,7 +28,7 @@ class _EditingProfilePageState extends State<EditingProfilePage> {
        children: [
            GestureDetector(
              onTap: (){
-               getImage();
+               getImage(source: ImageSource.gallery);
              },
              child: Container
                (
@@ -41,13 +44,14 @@ class _EditingProfilePageState extends State<EditingProfilePage> {
                  : FileImage(
                     File(imageFile!.path)
                  ),
-                 child: imageFile==null
-                     ?
+                 child:imageFile!=null
+                     ? null
+                     :
                  Icon(
                    Icons.add_photo_alternate,
                    color: Colors.white,
                    size: MediaQuery.of(context).size.width*.20 ,
-                 ): null ,
+                 ) ,
                ),
              ),
            ),
@@ -64,36 +68,42 @@ class _EditingProfilePageState extends State<EditingProfilePage> {
          const SizedBox(height: 24,),
          TextFieldWidget(
            label: 'Full Name',
-           text : user.name,
-           onChanged:(name){},
+           text : widget.user.userName??"",
+           onChanged:(name){
+             widget.user.userName = name;
+           },
          ),
          const SizedBox(height: 24,),
          TextFieldWidget
            (label: 'Phone',
-             text: user.phone,
-             onChanged: (phone){},
+             text: widget.user.phoneNumber??"",
+             onChanged: (phone){
+               widget.user.phoneNumber = phone;
+             },
              ),
          const SizedBox(height: 24,),
          TextFieldWidget
            (
            maxLines: 5,
              label: 'About',
-             text: user.about,
-             onChanged: (about){},
+             text: widget.user.about??"",
+             onChanged: (about){
+               widget.user.about= about;
+             },
              ),
             SizedBox(height: 5,),
          defaultButton
            (
            background: Colors.purple[400],
-           function: ()
+           function: () async
            {
-             Navigator.push(
-               context,
-               MaterialPageRoute(
-                 builder:(context)=>Profile() ,
-               ),
-
+             await  FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser?.uid).update({
+               'userName': widget.user.userName??"",
+               'about': widget.user.about??"",
+               'phoneNumber': widget.user.phoneNumber??"",
+             },
              );
+             Navigator.pop(context,true);
            },
            text: "Update",
            radius: 20,
@@ -107,19 +117,35 @@ class _EditingProfilePageState extends State<EditingProfilePage> {
    );
   }
 
-  final ImagePicker imagePicker =ImagePicker();
-  getImage ()async
+  void getImage({required ImageSource source})async
   {
-     imageFile= await imagePicker.pickImage( source:  ImageSource.gallery);
+    final file = await ImagePicker().pickImage( source: source);
+    if(file ?.path !=null){
+      String url = await uploadPhotoToFirebase(File(file!.path));
+      await  FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser?.uid).update({
+        'image': url,
+      },
+      );
+      Navigator.pop(context,true);
+      final path = file.path;
+      final fileName = file.name;
+      print(path);
+      print(fileName);
 
-      setState(() {
-        imageFile ;
-        //= File (file!.path);
-      });
-
-
-
-
+    }
   }
+
+  Future<String> uploadPhotoToFirebase(File _image,) async {
+    // setState(() {
+    //   loading =true;
+    // });
+    final storageReference = FirebaseStorage.instance
+        .ref()
+        .child('images/${_image.path}');
+    UploadTask uploadTask = storageReference.putFile(_image);
+    await uploadTask.whenComplete((){ });
+    return await storageReference.getDownloadURL();
+  }
+
 
 }

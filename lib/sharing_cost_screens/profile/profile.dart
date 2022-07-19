@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:save_cost/domain/model/user_model.dart';
@@ -22,11 +23,10 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-
-  List<UserModel> users = [] ;
+  UserModel user = UserModel();
   @override
   Widget build(BuildContext context) {
-    final user = UserPreferences.myUser;
+    final user2 = UserPreferences.myUser;
 
     return Scaffold(
       appBar: AppBar(
@@ -39,20 +39,67 @@ class _ProfileState extends State<Profile> {
            physics: BouncingScrollPhysics(),
           children: [
             SizedBox(height: 10,),
-            ProfileWidget(
-              imagePath: user.imagePath,
-              onClicked: () async {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context)=> EditingProfilePage()),
-                );
+
+            const SizedBox(height: 24,),
+            // buildName(user),
+            // const SizedBox(height: 24,),
+            // NumbersWidget(),
+            // const SizedBox(height: 24,),
+            // buildAbout(user),
+            FutureBuilder<QuerySnapshot>(
+              future: FirebaseFirestore.instance.collection("users").where("id",isEqualTo: FirebaseAuth.instance.currentUser?.uid).get(),
+              builder: ( context,  snapshot) {
+                switch(snapshot.connectionState)
+                {
+                  case ConnectionState.none:
+                    return SizedBox();
+                  case ConnectionState.waiting:
+                    return Center(
+                      child: Text("Loading...."),
+                    );
+                  case ConnectionState.active:
+                    return SizedBox();
+                  case ConnectionState.done:
+
+                    log("${snapshot.data?.docs.length.toString()}");
+                    log("${FirebaseAuth.instance.currentUser?.uid}");
+                    snapshot.data?.docs.forEach((element) {
+                      log(element["id"]);
+                       user = UserModel.fromJson(element);
+                    });
+                    return  Container(
+                      child: Column(
+                        // physics: BouncingScrollPhysics(),
+                        children: [
+                          SizedBox(height: 10,),
+                          ProfileWidget(
+                            imagePath: user.image??"",
+                            onClicked: () async {
+                              bool isChanged = await  Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context)=> EditingProfilePage(user)),
+                              );
+                              if(isChanged){
+                                setState((){});
+                              }
+                            },
+                          ),
+                          const SizedBox(height: 24,),
+                          buildName(user),
+                          const SizedBox(height: 24,),
+                          NumbersWidget(),
+                          const SizedBox(height: 24,),
+                          buildAbout(user)
+                        ],
+                      ),
+                    );
+
+
+
+
+
+                }
               },
             ),
-            const SizedBox(height: 24,),
-            buildName(user),
-            const SizedBox(height: 24,),
-            NumbersWidget(),
-            const SizedBox(height: 24,),
-            buildAbout(user),
 
 
 
@@ -60,80 +107,13 @@ class _ProfileState extends State<Profile> {
           ],
         ),
       ),
-      // FutureBuilder<QuerySnapshot>(
-      //   future: FirebaseFirestore.instance.collection("users").get(),
-      //
-      //   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-      //     switch(snapshot.connectionState)
-      //     {
-      //       case ConnectionState.none:
-      //         return SizedBox();
-      //       case ConnectionState.waiting:
-      //         return Center(
-      //           child: Text("Loading...."),
-      //         );
-      //       case ConnectionState.active:
-      //         return SizedBox();
-      //       case ConnectionState.done:
-      //         log("${snapshot.data?.docs.length.toString()}");
-      //         users.clear();
-      //         snapshot.data?.docs.forEach((element) {
-      //           log(element["id"]);
-      //           users.add(UserModel.fromJson(element));
-      //         });
-      //         return  ListView.separated(
-      //
-      //           physics: BouncingScrollPhysics(),
-      //           separatorBuilder: (BuildContext context, int index) {
-      //             return
-      //                 SizedBox();
-      //           },
-      //           itemBuilder: (BuildContext context, int index) {
-      //             return Container(
-      //               child: Column(
-      //                 // physics: BouncingScrollPhysics(),
-      //                 children: [
-      //                   SizedBox(height: 10,),
-      //                   ProfileWidget(
-      //                     imagePath: user.imagePath,
-      //                     onClicked: () async {
-      //                       Navigator.of(context).push(
-      //                         MaterialPageRoute(builder: (context)=> EditingProfilePage()),
-      //                       );
-      //                     },
-      //                   ),
-      //                   const SizedBox(height: 24,),
-      //                   buildName(user),
-      //                   const SizedBox(height: 24,),
-      //                   NumbersWidget(),
-      //                   const SizedBox(height: 24,),
-      //                   buildAbout(user),
-      //
-      //
-      //
-      //
-      //                 ],
-      //               ),
-      //             );
-      //           },
-      //           itemCount: users.length,
-      //
-      //         ) ;
-      //
-      //
-      //
-      //
-      //
-      //     }
-      //   },
-      // ),
 
     );
   }
  // final UserModel myUser;
   //List<UserModel> users= [] ;
   //widget.myUsers.userName
-  Widget buildName(User user) =>
+  Widget buildName(UserModel user) =>
   //     ListView.separated(
   //
   //   itemBuilder: (BuildContext context, int index) {
@@ -176,7 +156,7 @@ class _ProfileState extends State<Profile> {
       Text(
         //myUser.userName!,
         //"${users[index].userName}",
-        user.name,
+        user.userName??"",
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize:30,
@@ -184,12 +164,12 @@ class _ProfileState extends State<Profile> {
       ),
       const SizedBox(height: 4.0,),
       Text(
-        user.phone,
+        user.phoneNumber??"",
         style: Theme.of(context).textTheme.bodyText1,
       ),
       const SizedBox(height: 4.0,),
       Text(
-        user.email,
+        user.email??"",
         style: TextStyle(
           color: Colors.grey,
 
@@ -202,7 +182,7 @@ class _ProfileState extends State<Profile> {
 
 
 
-Widget buildAbout (User user)=>Container(
+Widget buildAbout (UserModel user)=>Container(
   padding: EdgeInsets.symmetric(horizontal: 48 ),
   child:   Column(
 
@@ -223,9 +203,7 @@ Widget buildAbout (User user)=>Container(
       SizedBox(height: 10,),
 
       Text(
-
-        user.about,
-
+        user.about??"",
         style: TextStyle(fontSize: 16,height: 1.4),
 
       )

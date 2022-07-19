@@ -31,8 +31,7 @@ class ProfileWidget extends StatelessWidget {
                 right: 4,
                 child: InkWell(
                   onTap: (){
-                    Navigator.push(context,MaterialPageRoute(builder:(builder)=> EditingProfilePage())
-                        );
+                    onClicked();
                   },
                     child: buildEditingIcon(color))
             ),

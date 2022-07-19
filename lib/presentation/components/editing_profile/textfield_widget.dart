@@ -47,6 +47,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       ) ,
        const SizedBox(height: 8,),
        TextField(
+         onChanged: widget.onChanged,
          controller: controller,
            decoration: InputDecoration(
              border: OutlineInputBorder(
