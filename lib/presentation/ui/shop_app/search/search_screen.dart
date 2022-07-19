@@ -158,7 +158,18 @@ class _SearchScreenState extends State<SearchScreen> {
                 Text(
                   product.name??"",
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 15,
+                    height: 1.3,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(height: 5,),
+                Text(
+                  '- ' + product.description.toString(),
+                  style: TextStyle(
+                    fontStyle:FontStyle.normal ,
+                    fontSize: 12,
                     height: 1.3,
                   ),
                   maxLines: 2,

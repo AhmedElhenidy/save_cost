@@ -107,7 +107,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 
                   ),
 
-                  if(1 !=0 && isOldPrice)
+                  //if(1 !=0 && isOldPrice)
+                  if(product.discount != "0")
                     Container(
                       color: Colors.red,
                       padding: EdgeInsets.symmetric(horizontal: 5.0),
@@ -155,7 +156,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                               'EGP ${product.price}',
                               style: TextStyle(
                                 fontSize: 10,
-                                color: Colors.black,
+                                //color: Colors.black,
                                 decoration: TextDecoration.lineThrough,
                               ),
 

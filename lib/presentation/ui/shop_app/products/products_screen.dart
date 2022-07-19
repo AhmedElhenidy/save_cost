@@ -290,15 +290,52 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                   ),
 
                                   Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        products[index].price.toString()+ '\tEGP',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.purple,
-                                        ),
+                                      if(products[index].discount !="0")
+                                        Column(
+                                          children: [
+                                            Text(
+                                              'EGP ${products[index].price}',
+                                              style: TextStyle(
+                                                color: Colors.purple,
+                                                fontSize: 14,
+                                               // color: Colors.black,
+                                                decoration: TextDecoration.lineThrough,
+                                              ),
 
-                                      ),
+                                            ),
+                                           // if( 1 !=0 && isOldPrice)
+                                              Text(
+                                                '\tEGP ' + (products[index].price! *(1-double.parse(products[index].discount!)*.01)).toString(),
+                                                style: TextStyle(
+                                                  fontSize: 12.0,
+                                                  //color: Colors.purple,
+
+                                                ),
+
+
+                                              ),
+                                          ],
+                                        ),
+                                      // OLD PRICE
+                                      if(products[index].discount == "0")
+                                        Text(
+                                          '\tEGP '+ products[index].price!.toString(),
+                                          style: TextStyle(
+                                            color: Colors.purple,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      // Text(
+                                      //   products[index].price.toString()+ '\tEGP',
+                                      //   style: TextStyle(
+                                      //     fontSize: 12,
+                                      //     color: Colors.purple,
+                                      //   ),
+                                      //
+                                      // ),
                                       SizedBox(
                                         width: 5.0,
                                       ),

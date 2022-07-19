@@ -205,12 +205,7 @@ class _SettingScreenState extends State<SettingScreen> {
                          icon:Icon(
                            Icons.brightness_4_outlined,
                          ) ,),
-                       // IconButton(onPressed: (){
-                       //   AppCubit.get(context).changeAppMode();
-                       // },
-                       //     icon: Icon(
-                       //       Icons.brightness_4_outlined,
-                       //     ) ,)
+
                        // Switcher(
                        //   value:AppCubit.get(context).isDark? false : true,
                        //   //themeNotifier.isDarkMode? false :true,

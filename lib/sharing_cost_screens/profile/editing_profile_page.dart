@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:save_cost/presentation/components/default_button.dart';
 import 'package:save_cost/presentation/components/profile/profile_widget.dart';
 import 'package:save_cost/sharing_cost_screens/profile/profile.dart';
 import '../../presentation/components/editing_profile/textfield_widget.dart';
@@ -80,7 +81,28 @@ class _EditingProfilePageState extends State<EditingProfilePage> {
              text: user.about,
              onChanged: (about){},
              ),
+            SizedBox(height: 5,),
+         defaultButton
+           (
+           background: Colors.purple[400],
+           function: ()
+           {
+             Navigator.push(
+               context,
+               MaterialPageRoute(
+                 builder:(context)=>Profile() ,
+               ),
+
+             );
+           },
+           text: "Logout",
+           radius: 20,
+           width: 120,
+         ),
        ],
+
+
+
      ),
    );
   }
