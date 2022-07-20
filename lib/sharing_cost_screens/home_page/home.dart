@@ -72,7 +72,8 @@ class _TripsHomeState extends State<TripsHome> {
                             ),
                             title:Container(margin: EdgeInsets.only(top: 0),
                               child:
-                              Text('Mohamed Ali',
+                              Text('${posts[index].userName}',
+                                //'Mohamed Ali',
                                 style: Theme.of(context).textTheme.bodyText1,
                               ),) ,
                             // subtitle: Text(
@@ -154,7 +155,6 @@ class _TripsHomeState extends State<TripsHome> {
                                     Row(
                                       children: [
                                         Text('From: ',
-                                          maxLines: 2,
                                           style: TextStyle(fontSize: 20,
                                             fontStyle:FontStyle.italic,
                                             color:Theme.of(context).textTheme.headline1?.color,
@@ -163,7 +163,7 @@ class _TripsHomeState extends State<TripsHome> {
                                       ],
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 10.0,),
+                                      padding: const EdgeInsets.only(left: 10.0),
                                       child: Text('${posts[index].from}',
                                         maxLines: 2,
                                         style: TextStyle(
@@ -189,12 +189,16 @@ class _TripsHomeState extends State<TripsHome> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 10.0),
-                                      child: Text('${posts[index].to}',
-                                        maxLines: 2,
-                                        style: TextStyle(
-                                          fontSize: 16,
+                                      child: Row(
+                                        children: [
+                                          Text('${posts[index].to}',
+                                            maxLines: 2,
+                                            style: TextStyle(
+                                              fontSize: 16,
 
-                                        ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
@@ -256,7 +260,7 @@ class _TripsHomeState extends State<TripsHome> {
                                         color:Theme.of(context).textTheme.headline1?.color,
                                       ),
                                     ),
-                                    Text('س ا م ٤٥٦٧',
+                                    Text('${posts[index].plateNumbers}',
                                       style: TextStyle(
                                         fontSize: 16,
 
@@ -304,7 +308,8 @@ class _TripsHomeState extends State<TripsHome> {
                                         builder: (BuildContext context) => AlertDialog(
                                           title: const Text('If you want to join my trip, that is my '
                                               'Email address '),
-                                          content: const Text('mohamedali125@gmail.com',
+                                          content:  Text(posts[index].emailAddress,
+                                            //'mohamedali125@gmail.com',
                                             style: TextStyle(fontSize: 16,
                                               color: Colors.green,
                                             ),),

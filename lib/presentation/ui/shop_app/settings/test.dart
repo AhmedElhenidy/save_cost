@@ -94,7 +94,7 @@ class Test extends StatelessWidget {
   //       bottomNavigationBar: NavigationBarWidget(),
   //     );
 
-  @override
+  //@override
   // Widget build(BuildContext context) {
   //   final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
   //       ? 'DarkTheme'
@@ -124,20 +124,20 @@ class Test extends StatelessWidget {
 
 
 
-class ThemeProvider extends ChangeNotifier {
-  ThemeMode themeMode = ThemeMode.system;
-
-  bool get isDarkMode {
-    if (themeMode == ThemeMode.system) {
-      final brightness = SchedulerBinding.instance?.window.platformBrightness;
-      return brightness == Brightness.dark;
-    } else {
-      return themeMode == ThemeMode.dark;
-    }
-  }
-
-  void toggleTheme(bool isOn) {
-    themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
-    notifyListeners();
-  }
-}
+// class ThemeProvider extends ChangeNotifier {
+//   ThemeMode themeMode = ThemeMode.system;
+//
+//   bool get isDarkMode {
+//     if (themeMode == ThemeMode.system) {
+//       final brightness = SchedulerBinding.instance?.window.platformBrightness;
+//       return brightness == Brightness.dark;
+//     } else {
+//       return themeMode == ThemeMode.dark;
+//     }
+//   }
+//
+//   void toggleTheme(bool isOn) {
+//     themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
+//     notifyListeners();
+//   }
+// }

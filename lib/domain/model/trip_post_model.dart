@@ -6,7 +6,11 @@ class Post {
     this.carModel,
     this.date,
     this.time,
-    this.user,this.image
+    this.user,
+    this.image,
+    this.plateNumbers,
+    this.userName='Mohamed Ali',
+    this.emailAddress='mohamedali125@gmail.com',
    });
 
   Post.fromJson(dynamic json) {
@@ -17,6 +21,9 @@ class Post {
     time = json['time'];
     user = json['user'];
     image = json['image'];
+    plateNumbers = json['plateNumbers'];
+    userName = json['userName'];
+    emailAddress = json['emailAddress'];
 
   }
 
@@ -27,6 +34,9 @@ class Post {
   String? time;
   String? user;
   String? image;
+  String? plateNumbers;
+  String userName='Mohamed Ali';
+  String emailAddress='mohamedali125@gmail.com';
   Map<String, dynamic> toJson()
   {
     final map = <String, dynamic>{};
@@ -36,6 +46,9 @@ class Post {
     map['date'] = date;
     map['time'] = time;
     map['user'] = user;
+    map['plateNumbers'] = plateNumbers;
+    map['userName'] = userName;
+    map['emailAddress'] = emailAddress;
     return map;
   }
 

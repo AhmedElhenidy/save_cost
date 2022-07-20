@@ -20,7 +20,8 @@ class _AddTripState extends State<AddTrip> {
   var toController = TextEditingController();
   var timeController = TextEditingController();
   var dateController = TextEditingController();
-  var CarController = TextEditingController();
+  var carController = TextEditingController();
+  var numberController = TextEditingController();
   var formKey = GlobalKey<FormState>();
   bool isClicked = false;
   bool loading = false;
@@ -206,7 +207,7 @@ class _AddTripState extends State<AddTrip> {
                 padding: const EdgeInsets.all(20.0),
                 child:
                   TextFormField(
-                    controller: CarController,
+                    controller: carController,
                     keyboardType:TextInputType.text,
                     validator: (value){
                       if(value!.isEmpty){
@@ -233,11 +234,11 @@ class _AddTripState extends State<AddTrip> {
                 padding: const EdgeInsets.all(20.0),
                 child:
                 TextFormField(
-                  controller: CarController,
+                  controller: numberController,
                   keyboardType:TextInputType.text,
                   validator: (value){
                     if(value!.isEmpty){
-                      return 'Car model must not be empty';
+                      return 'Plate Number must not be empty';
                     }
                     return null;
                   },
@@ -250,7 +251,7 @@ class _AddTripState extends State<AddTrip> {
 
                     ),
 
-                    label:  Text('Plate car',
+                    label:  Text('Plate Number',
                       style: Theme.of(context).textTheme.subtitle1,),
                   ) ,
                 ),
@@ -303,6 +304,8 @@ class _AddTripState extends State<AddTrip> {
                 ),
               Container(
                 child: ElevatedButton(
+                  style:  ButtonStyle(
+                  ),
                   onPressed: ()=> getImage(source: ImageSource.gallery),
                   child: const Text(
                     'select car image from gallery',
@@ -328,7 +331,8 @@ class _AddTripState extends State<AddTrip> {
                            'to': toController.text,
                            'date': dateController.text,
                              'time': timeController.text,
-                             'carModel': CarController.text,
+                             'carModel': carController.text,
+                             'plateNumbers': numberController.text,
                              'user': FirebaseAuth.instance.currentUser!.uid,
                            'image':imageUrl,
                           "userName":""
