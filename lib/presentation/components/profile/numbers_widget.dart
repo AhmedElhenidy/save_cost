@@ -28,7 +28,7 @@ class _NumbersWidgetState extends State<NumbersWidget> {
       children:<Widget>[
         buildButton(context, '4.8','Ranking'),
         buildDivider(),
-        buildButton(context, '3','Followers'),
+        buildButton(context, '3','Viewers'),
         buildDivider(),
         buildButton(context, posts==null?"55":posts!.docs.length.toString(),'Posts'),
 

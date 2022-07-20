@@ -9,8 +9,8 @@ class Post {
     this.user,
     this.image,
     this.plateNumbers,
-    this.userName='Mohamed Ali',
-    this.emailAddress='mohamedali125@gmail.com',
+    this.userName='sara mohamed',
+    this.emailAddress='sara124@gmail.com',
    });
 
   Post.fromJson(dynamic json) {
@@ -35,8 +35,8 @@ class Post {
   String? user;
   String? image;
   String? plateNumbers;
-  String userName='Mohamed Ali';
-  String emailAddress='mohamedali125@gmail.com';
+  String userName='sara mohamed';
+  String emailAddress='sara124@gmail.com';
   Map<String, dynamic> toJson()
   {
     final map = <String, dynamic>{};
