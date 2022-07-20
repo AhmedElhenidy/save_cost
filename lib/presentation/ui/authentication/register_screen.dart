@@ -233,7 +233,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Container(
-                        color: Colors.purple,
+                        color: Colors.green,
                         //width: 90,
                         height: 45,
 

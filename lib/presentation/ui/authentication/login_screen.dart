@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold (
       appBar: AppBar(
         elevation: 4,
-        backgroundColor:Colors.purple,
+        backgroundColor:Colors.green,
         title: Text (
           'Welcome to your app',
           style: TextStyle(color: Colors.white,),
@@ -144,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 SizedBox(height: 20,),
                 defaultButton(
-                  background: Colors.purple,
+                  background: Colors.green,
                   text: 'Login',
                   radius: 20,
                   function: (){
@@ -197,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         'Register Now',
                         style: TextStyle(
                           fontSize: 17,
-                          color: Colors.purple[300],
+                          color: Colors.green[500],
                         ),
                       ),)
 

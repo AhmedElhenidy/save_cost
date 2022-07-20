@@ -34,7 +34,7 @@ class ChooseScreen extends StatelessWidget {
           ],
         //hexColor
         //#54AD45
-      backgroundColor: Colors.blueGrey.withOpacity(.9),
+      backgroundColor: Colors.green,
       //HexColor("#54AD45"),
       //Colors.green[500],
      ),
@@ -81,8 +81,8 @@ class ChooseScreen extends StatelessWidget {
 
                        Container(
 
-                         color:  Colors.blueGrey.withOpacity(.9),
-                         //Colors.grey.withOpacity(.9),
+                        // color:  Colors.grey[400],
+                         color:Colors.grey.withOpacity(.9),
                          width: double.infinity,
                          padding: EdgeInsetsDirectional.only(top: 5,bottom: 5,),
                          child: Text(
@@ -130,7 +130,7 @@ class ChooseScreen extends StatelessWidget {
                         fit: BoxFit.fill,
                        ),
                        Container(
-                         color: Colors.blueGrey.withOpacity(.9),
+                         color:Colors.grey.withOpacity(.9),
                          padding: EdgeInsets.symmetric(
                            vertical: 5,
 

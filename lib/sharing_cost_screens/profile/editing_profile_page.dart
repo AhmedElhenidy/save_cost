@@ -94,7 +94,7 @@ class _EditingProfilePageState extends State<EditingProfilePage> {
             SizedBox(height: 5,),
          defaultButton
            (
-           background: Colors.purple[400],
+           background: Colors.green[400],
            function: () async
            {
              await  FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser?.uid).update({

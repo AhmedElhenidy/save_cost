@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
 
               ),
               backgroundColor: Colors.grey[350],
-              primarySwatch: Colors.purple,
+              primarySwatch: Colors.green,
               scaffoldBackgroundColor: Colors.white,
               appBarTheme:const AppBarTheme(
                 titleSpacing: 20.0,
@@ -74,18 +74,18 @@ class MyApp extends StatelessWidget {
               ),
 
               floatingActionButtonTheme:const FloatingActionButtonThemeData(
-                backgroundColor: Colors.purple,
+                backgroundColor: Colors.green,
               ),
               bottomNavigationBarTheme:const BottomNavigationBarThemeData(
                 type: BottomNavigationBarType.fixed,
-                selectedItemColor: Colors.purple,
+                selectedItemColor: Colors.green,
                 unselectedItemColor:Colors.grey ,
                 elevation: 20.0,
                 backgroundColor: Colors.white ,
               ),
               textTheme: TextTheme(
                 headline1: TextStyle(
-                  color: Colors.purple,
+                  color: Colors.green,
                 ),
                 subtitle2: TextStyle(
 
@@ -120,7 +120,7 @@ class MyApp extends StatelessWidget {
                 color:Colors.white,
 
               ),
-              primarySwatch: Colors.purple,
+              primarySwatch: Colors.green,
               scaffoldBackgroundColor: HexColor('333739'),
               appBarTheme: AppBarTheme(toolbarTextStyle: TextStyle(color: Colors.green),
                 titleSpacing: 20.0,
@@ -144,18 +144,18 @@ class MyApp extends StatelessWidget {
                 ) ,
               ),
               floatingActionButtonTheme: FloatingActionButtonThemeData(
-                backgroundColor: Colors.purple,
+                backgroundColor: Colors.green,
               ),
               bottomNavigationBarTheme: BottomNavigationBarThemeData(
                 type: BottomNavigationBarType.fixed,
-                selectedItemColor: Colors.purple,
+                selectedItemColor: Colors.green,
                 unselectedItemColor:Colors.grey ,
                 elevation: 20.0,
                 backgroundColor: HexColor('333739') ,
               ),
               textTheme: TextTheme(
                 headline1: TextStyle(
-                  color: Colors.purple[200],
+                  color: Colors.green[200],
                 ),
                 subtitle2: TextStyle(
 

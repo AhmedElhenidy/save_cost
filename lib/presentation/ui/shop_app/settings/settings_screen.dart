@@ -246,7 +246,7 @@ class _SettingScreenState extends State<SettingScreen> {
                          iconOff:Icons.circle,
                          iconOn: Icons.circle_outlined,
                          colorOff: Colors.blueGrey.withOpacity(0.3),
-                         colorOn: Colors.purple,
+                         colorOn: Colors.green,
 
                          onChanged: (bool state) {
                            //
@@ -273,7 +273,7 @@ class _SettingScreenState extends State<SettingScreen> {
                          iconOff:Icons.circle,
                          iconOn: Icons.circle_outlined,
                          colorOff: Colors.blueGrey.withOpacity(0.3),
-                         colorOn: Colors.purple,
+                         colorOn: Colors.green,
 
                          onChanged: (bool state) {
                            //
@@ -299,7 +299,7 @@ class _SettingScreenState extends State<SettingScreen> {
                          iconOff:Icons.circle,
                          iconOn: Icons.circle_outlined,
                          colorOff: Colors.blueGrey.withOpacity(0.3),
-                         colorOn: Colors.purple,
+                         colorOn: Colors.green,
 
                          onChanged: (bool state) {
                            //
@@ -316,7 +316,7 @@ class _SettingScreenState extends State<SettingScreen> {
 
                    defaultButton
                      (
-                     background: Colors.purple[400],
+                     background: Colors.green[400],
                      function: ()
                      {
                        Navigator.pushAndRemoveUntil(

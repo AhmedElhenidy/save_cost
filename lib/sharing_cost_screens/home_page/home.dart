@@ -63,7 +63,7 @@ class _TripsHomeState extends State<TripsHome> {
                         [
                           ListTile(
                             leading: CircleAvatar(
-                              backgroundColor: Colors.purple,
+                              backgroundColor: Colors.green,
                               child: Icon(Icons.person,
                                 //color: Theme.of(context).iconTheme.color,
                                 color: Colors.white,
@@ -72,7 +72,7 @@ class _TripsHomeState extends State<TripsHome> {
                             ),
                             title:Container(margin: EdgeInsets.only(top: 0),
                               child:
-                              Text('Name',
+                              Text('Mohamed Ali',
                                 style: Theme.of(context).textTheme.bodyText1,
                               ),) ,
                             // subtitle: Text(
@@ -149,34 +149,52 @@ class _TripsHomeState extends State<TripsHome> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
+                                Column(
                                   children: [
-                                    Text('From: ',
-                                      style: TextStyle(fontSize: 20,
-                                        fontStyle:FontStyle.italic,
-                                        color:Theme.of(context).textTheme.headline1?.color,
-                                      ),
+                                    Row(
+                                      children: [
+                                        Text('From: ',
+                                          maxLines: 2,
+                                          style: TextStyle(fontSize: 20,
+                                            fontStyle:FontStyle.italic,
+                                            color:Theme.of(context).textTheme.headline1?.color,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text('${posts[index].from}',
-                                      style: TextStyle(
-                                        fontSize: 16,
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10.0,),
+                                      child: Text('${posts[index].from}',
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                          fontSize: 16,
 
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
-                                Row(
+                                SizedBox(height: 2),
+                                Column(
                                   children: [
-                                    Text('To: ',
-                                      style: TextStyle(fontSize: 20,
-                                        fontStyle:FontStyle.italic,
-                                        color:Theme.of(context).textTheme.headline1?.color,
-                                      ),
+                                    Row(
+                                      children: [
+                                        Text('To: ',
+                                          style: TextStyle(fontSize: 20,
+                                            fontStyle:FontStyle.italic,
+                                            color:Theme.of(context).textTheme.headline1?.color,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text('${posts[index].to}',
-                                      style: TextStyle(
-                                        fontSize: 16,
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10.0),
+                                      child: Text('${posts[index].to}',
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                          fontSize: 16,
 
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -229,7 +247,25 @@ class _TripsHomeState extends State<TripsHome> {
                                     ),
                                   ],
                                 ),
+                               // SizedBox(height: 10,),
+                                Row(
+                                  children: [
+                                    Text('Plate car: ',
+                                      style: TextStyle(fontSize: 20,
+                                        fontStyle:FontStyle.italic,
+                                        color:Theme.of(context).textTheme.headline1?.color,
+                                      ),
+                                    ),
+                                    Text('س ا م ٤٥٦٧',
+                                      style: TextStyle(
+                                        fontSize: 16,
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
                                 SizedBox(height: 10,),
+
                                 Container(
                                  // height: 200,
                                  // width: 200,
@@ -248,7 +284,7 @@ class _TripsHomeState extends State<TripsHome> {
                                 Container(
 
                                   height: 40,
-                                  color: Colors.purple,
+                                  color: Colors.green,
                                   child:
                                   //
                                   // defaultButton
@@ -268,9 +304,9 @@ class _TripsHomeState extends State<TripsHome> {
                                         builder: (BuildContext context) => AlertDialog(
                                           title: const Text('If you want to join my trip, that is my '
                                               'Email address '),
-                                          content: const Text('ahmed@ahmed.com',
+                                          content: const Text('mohamedali125@gmail.com',
                                             style: TextStyle(fontSize: 16,
-                                              color: Colors.purple,
+                                              color: Colors.green,
                                             ),),
                                         ),
                                       );

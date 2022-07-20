@@ -229,6 +229,33 @@ class _AddTripState extends State<AddTrip> {
                   ),
 
               ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child:
+                TextFormField(
+                  controller: CarController,
+                  keyboardType:TextInputType.text,
+                  validator: (value){
+                    if(value!.isEmpty){
+                      return 'Car model must not be empty';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+
+                    border:OutlineInputBorder() ,
+                    prefixIcon: Icon(
+                      Icons.directions_car_rounded,
+                      color: Theme.of(context).iconTheme.color,
+
+                    ),
+
+                    label:  Text('Plate car',
+                      style: Theme.of(context).textTheme.subtitle1,),
+                  ) ,
+                ),
+
+              ),
 
                 Column(
 
@@ -286,7 +313,7 @@ class _AddTripState extends State<AddTrip> {
                 ),
               ),
               Container(
-                color: Colors.purple,
+                color: Colors.green,
                 height: 40,
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
